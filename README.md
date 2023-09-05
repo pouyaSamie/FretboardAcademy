@@ -1,6 +1,6 @@
-# Guitar Fretboard Memorization App
+# Fretboard Academy
 
-Welcome to the Guitar Fretboard Memorization App! This web application is designed to help you master the guitar fretboard by providing an interactive and engaging learning experience. This project is built with Vue.js and was inspired by the UI of [FretMap](https://github.com/thathurtabit/FretMap) by ThatHurtABit.
+Welcome to the Fretboard Academy! This web application is designed to help you master the guitar fretboard by providing an interactive and engaging learning experience. This project is built with Vue.js and was inspired by the UI of [FretMap](https://github.com/thathurtabit/FretMap) by ThatHurtABit.
 
 ## Features
 
