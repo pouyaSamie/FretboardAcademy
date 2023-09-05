@@ -1,6 +1,5 @@
 <template>
-  <button @click="toggleGame">{{ gameActive ? 'Stop' : 'Start' }} Game</button>
-  <div class="guitar-outer">
+  <div class="guitar-outer" ref="guitarOuter">
     <!-- HEAD -->
     <div class="guitar-head"></div>
     <!-- / HEAD -->
@@ -34,8 +33,8 @@
       <span v-for="(note, index) in string.notes" :key="index"
             :class="['note', 'note-' + note,
                    'pos' + index]"
-                   @click="checkNote(note)"
-                   @keydown.enter="checkNote(note)" >{{ note }}</span>
+                   @click="checkNote($event,note)"
+                   @keydown.enter="checkNote($event,note)" >{{ note }}</span>
       <!-- / NOTES -->
           <!-- / NOTES -->
         </span>
@@ -52,59 +51,44 @@
 
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
 
-export default defineComponent({
-  name: 'guitarNeck',
-  props: {
-    msg: String,
-  },
-  data() {
-    return {
-      strings: [
-        { id: 'highE', class: 'string-highe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd'] },
-        { id: 'B', class: 'string-b', notes: ['a#', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a'] },
-        { id: 'G', class: 'string-g', notes: ['g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f'] },
-        { id: 'D', class: 'string-d', notes: ['d', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c'] },
-        { id: 'A', class: 'string-a', notes: ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g'] },
-        { id: 'lowE', class: 'string-lowe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd'] },
-      ],
-      randomlySelectedNote: null as string | null,
-      gameActive: false,
-      score: 0,
-    };
-  },
-  methods: {
-    selectRandomNote() {
-      const notes = ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#'];
-      const randomIndex = Math.floor(Math.random() * notes.length);
-      const selectedNote = notes[randomIndex];
-      this.randomlySelectedNote = selectedNote;
-    },
-    checkNote(clickedNote: string) {
-      console.log(clickedNote);
-      if (clickedNote === this.randomlySelectedNote) {
-        // Correct note clicked, add 10 points
-        this.score += 10;
-      } else {
-        // Incorrect note clicked, subtract 5 points
-        this.score -= 5;
-      }
-      // Select a new random note
-      this.selectRandomNote();
-    },
-    toggleGame() {
-      // Toggle the game state (start/stop)
-      this.gameActive = !this.gameActive;
+const guitarOuter = ref<HTMLElement | null>(null);
+const strings = [
+  { id: 'highE', class: 'string-highe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd'] },
+  { id: 'B', class: 'string-b', notes: ['a#', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a'] },
+  { id: 'G', class: 'string-g', notes: ['g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f'] },
+  { id: 'D', class: 'string-d', notes: ['d', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c'] },
+  { id: 'A', class: 'string-a', notes: ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g'] },
+  { id: 'lowE', class: 'string-lowe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd'] },
+];
 
-      // Reset the score and start a new game
-      if (this.gameActive) {
-        this.score = 0;
-        this.selectRandomNote();
-      }
-    },
-  },
+let randomlySelectedNote: string | null = null;
+
+const selectRandomNote = () => {
+  const notes = ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#'];
+  const randomIndex = Math.floor(Math.random() * notes.length);
+  randomlySelectedNote = notes[randomIndex];
+};
+
+const checkNote = (event: MouseEvent | KeyboardEvent, clickedNote: string) => {
+  const target = event.currentTarget as HTMLElement;
+  if (target) target.classList.add('on');
+  setTimeout(() => {
+    target.classList.remove('on');
+  }, 2000); // 2000 milliseconds = 2 seconds
+  if (clickedNote === randomlySelectedNote) {
+    // Select a new random note
+    selectRandomNote();
+  }
+};
+onMounted(() => {
+  if (guitarOuter.value) {
+    const scrollPosition = guitarOuter.value.scrollWidth * 0.5;
+    console.log(guitarOuter.value);
+    guitarOuter.value.scrollLeft = (scrollPosition * -1);
+  }
 });
 </script>
 
