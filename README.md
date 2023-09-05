@@ -1,4 +1,6 @@
 # fretmap-vue
+This is a simple web app to memorize guitar fretboard.
+this project is still on early stages.
 
 ## Project setup
 ```
@@ -19,6 +21,3 @@ yarn build
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
