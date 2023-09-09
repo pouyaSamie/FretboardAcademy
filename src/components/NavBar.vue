@@ -9,13 +9,16 @@
                   <span class="icon-bar"></span>
                 </button>
                 <div class="brand">Fretboard Academy - Master the guitar fretboard</div>
-                <div class="nav-collapse collapse">
+                <DropDown />
+                <!-- <div class="nav-collapse collapse" @blur="closeDropdowns">
                   <ul class="nav">
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                         @keydown.enter="showRootDropdown = !showRootDropdown"
+                         @click.prevent="showRootDropdown = !showRootDropdown">
                         Choose Root <b class="caret"></b>
                       </a>
-                      <ul class="dropdown-menu select-root minor-blues">
+                      <ul class="dropdown-menu select-root minor-blues" v-if="showRootDropdown">
                         <li class="show-root-e active"><a href="#">e</a></li>
                         <li class="show-root-f "><a href="#">f</a></li>
                         <li class="show-root-fs"><a href="#">f<i>#</i></a></li>
@@ -31,10 +34,12 @@
                       </ul>
                     </li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                      @keydown.enter="showScaleDropdown = !showScaleDropdown"
+                         @click.prevent="showScaleDropdown = !showScaleDropdown">
                         Choose Scale <b class="caret"></b>
                       </a>
-                      <ul class="dropdown-menu select-scale e">
+                      <ul class="dropdown-menu select-scale e"  v-if="showScaleDropdown">
                         <li class="scale-minor-blues active"><a href="#">Minor Blues</a></li>
                         <li class="scale-pentatonic-minor"><a href="#">Pentatonic Minor</a></li>
                         <li class="scale-major"><a href="#">Major</a></li>
@@ -44,31 +49,61 @@
                       </ul>
                     </li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        @keydown.enter="showHandDropdown = !showHandDropdown"
+                         @click.prevent="showHandDropdown = !showHandDropdown">
                         Switch hand <b class="caret"></b>
                       </a>
-                      <ul class="dropdown-menu select-hand">
+                      <ul class="dropdown-menu select-hand"  v-if="showHandDropdown">
                         <li class="right-hand active"><a href="#">Right hand</a></li>
                         <li class="left-hand"><a href="#">Left hand</a></li>
                       </ul>
                     </li>
-                    <li class="pull-right">
+                    <li  class="pull-right">
                       <a href="#modalAbout" role="button" data-toggle="modal">
                       About
                     </a>
                     </li>
                   </ul>
-                </div><!--/.nav-collapse -->
+                </div> -->
               </div>
             </div>
           </div>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+// import { ref } from 'vue';
+import DropDown from './DropDown.vue';
 
-export default defineComponent({
-  name: 'NavBar',
-});
+// const showRootDropdown = ref(false);
+// const showScaleDropdown = ref(false);
+// const showHandDropdown = ref(false);
+// const selectedRoot = ref(''); // Store the selected root value
+// const selectedScale = ref(''); // Store the selected scale value
+// const selectedHand = ref(''); // Store the selected hand value
+// const closeDropdowns = () => {
+//   showRootDropdown.value = false;
+//   showScaleDropdown.value = false;
+//   showHandDropdown.value = false;
+// };
+
+// Handle the selection of a root
+// const selectRoot = (root) => {
+//   selectedRoot.value = root;
+//   closeDropdowns();
+// };
+
+// // Handle the selection of a scale
+// const selectScale = (scale) => {
+//   selectedScale.value = scale;
+//   closeDropdowns();
+// };
+
+// // Handle the selection of a hand
+// const selectHand = (hand) => {
+//   selectedHand.value = hand;
+//   closeDropdowns();
+// };
+
 </script>
 <style lang="less">
 </style>

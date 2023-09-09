@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <GuitarNeck msg="Welcome to Your Vue.js + TypeScript App"/>
+  <GuitarNeck v-if="false" msg="Welcome to Your Vue.js + TypeScript App"/>
 </template>
 
 <script lang="ts">
