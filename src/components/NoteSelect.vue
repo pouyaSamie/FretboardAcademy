@@ -49,15 +49,14 @@ const toggleStringSelection = (note: string) => {
   else selectedStrings.value.splice(index, 1);
 };
 
-// store
-const Settings = {
-  selectedNotes: selectedNotes.value,
-  selectedStrings: selectedStrings.value,
-  frets: frets.value,
-};
-
 const StartNoteSelect = () => {
-  store.dispatch('updateSettings', Settings);
+  const settingsCopy = {
+    selectedNotes: [...selectedNotes.value], // Create a shallow copy of the array
+    selectedStrings: [...selectedStrings.value], // Create a shallow copy of the array
+    frets: frets.value,
+  };
+
+  store.dispatch('updateSettings', settingsCopy);
 };
 
 </script>

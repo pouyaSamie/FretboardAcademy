@@ -54,18 +54,21 @@
 <script setup lang="ts">
 import {
   ref,
-  watchEffect,
+  watch,
   onMounted,
 } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
-watchEffect(() => {
-  // pretend you have a getData getter in store
-  const data = store.getters.selectedNotes;
-  if (data === null) return;
-  console.log(data);
-});
+watch(
+  () => store.getters.selectedNotes,
+  (settings) => {
+    // use toRaw here to get a readable console.log result
+    console.log('settings have changed', settings);
+  },
+  { deep: true },
+);
+
 const guitarOuter = ref<HTMLElement | null>(null);
 const strings = [
   { id: 'highE', class: 'string-highe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd'] },
@@ -98,7 +101,6 @@ const checkNote = (event: MouseEvent | KeyboardEvent, clickedNote: string) => {
 onMounted(() => {
   if (guitarOuter.value) {
     const scrollPosition = guitarOuter.value.scrollWidth * 0.5;
-    console.log(guitarOuter.value);
     guitarOuter.value.scrollLeft = (scrollPosition * -1);
   }
 });
