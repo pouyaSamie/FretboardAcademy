@@ -33,8 +33,8 @@
       <span v-for="(note, index) in string.notes" :key="index"
             :class="['note', 'note-' + note,
                    'pos' + index]"
-                   @click="checkNote($event,note)"
-                   @keydown.enter="checkNote($event,note)" >{{ note }}</span>
+                   @click="checkNote($event,note,index,string)"
+                   @keydown.enter="checkNote($event,note,index,string)" >{{ note }}</span>
       <!-- / NOTES -->
           <!-- / NOTES -->
         </span>
@@ -61,15 +61,19 @@ import { useStore } from 'vuex';
 
 const store = useStore();
 watch(
-  () => store.getters.selectedNotes,
-  (settings) => {
-    // use toRaw here to get a readable console.log result
-    console.log('settings have changed', settings);
+  () => store.state, // Watch the entire state object
+  (newState) => {
+    console.log('State has changed', newState);
   },
   { deep: true },
 );
 
 const guitarOuter = ref<HTMLElement | null>(null);
+interface StringType {
+  id:string,
+  class:string,
+  notes:string[],
+}
 const strings = [
   { id: 'highE', class: 'string-highe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd'] },
   { id: 'B', class: 'string-b', notes: ['b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a'] },
@@ -77,7 +81,7 @@ const strings = [
   { id: 'D', class: 'string-d', notes: ['d', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c'] },
   { id: 'A', class: 'string-a', notes: ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g'] },
   { id: 'lowE', class: 'string-lowe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd'] },
-];
+] as StringType[];
 
 let randomlySelectedNote: string | null = null;
 
@@ -87,7 +91,13 @@ const selectRandomNote = () => {
   randomlySelectedNote = notes[randomIndex];
 };
 
-const checkNote = (event: MouseEvent | KeyboardEvent, clickedNote: string) => {
+const checkNote = (
+  event: MouseEvent | KeyboardEvent,
+  clickedNote: string,
+  index : number,
+  string: StringType,
+) => {
+  console.log(clickedNote, index, string.id);
   const target = event.currentTarget as HTMLElement;
   if (target) target.classList.add('on');
   setTimeout(() => {

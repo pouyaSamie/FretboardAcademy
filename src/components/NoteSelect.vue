@@ -18,7 +18,8 @@
     </ul>
     <div class="flex-tiny"><span>Fret</span></div>
     <label htmlFor="formControlRange" for="formControlRange">
-      <input type="range" id="formControlRange" v-model="frets">
+      <input type="range"  min = "4" max = "24" id="formControlRange" v-model="frets">
+      {{frets}}
     </label>
   </div>
 </template>
