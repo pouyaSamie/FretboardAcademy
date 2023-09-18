@@ -29,7 +29,7 @@ import { useStore } from 'vuex';
 const store = useStore();
 // initlize Valus
 const selectedNotes = ref<string[]>(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
-const selectedstrings = ref<string[]>(['high-E', 'B', 'G', 'D', 'A', 'low-E']);
+const selectedStrings = ref<string[]>(['high-E', 'B', 'G', 'D', 'A', 'low-E']);
 const frets = ref<number>(24);
 const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 const strings = ['high-E', 'B', 'G', 'D', 'A', 'low-E'];
@@ -38,26 +38,26 @@ const strings = ['high-E', 'B', 'G', 'D', 'A', 'low-E'];
 const isNoteSelected = (note: string) => selectedNotes.value.includes(note);
 const toggleNoteSelection = (note: string) => {
   const index = selectedNotes.value.indexOf(note);
-  if (index === -1) selectedstrings.value.push(note);
-  else selectedstrings.value.splice(index, 1);
+  if (index === -1) selectedNotes.value.push(note);
+  else selectedNotes.value.splice(index, 1);
 };
 
-const isStringSelected = (string: string) => selectedstrings.value.includes(string);
+const isStringSelected = (string: string) => selectedStrings.value.includes(string);
 const toggleStringSelection = (note: string) => {
-  const index = selectedstrings.value.indexOf(note);
-  if (index === -1) selectedstrings.value.push(note);
-  else selectedstrings.value.splice(index, 1);
+  const index = selectedStrings.value.indexOf(note);
+  if (index === -1) selectedStrings.value.push(note);
+  else selectedStrings.value.splice(index, 1);
 };
 
 // store
 const Settings = {
-  selectedNotes,
-  selectedstrings,
-  frets,
+  selectedNotes: selectedNotes.value,
+  selectedStrings: selectedStrings.value,
+  frets: frets.value,
 };
 
 const StartNoteSelect = () => {
-  store.dispatch('UpdateSettings', Settings);
+  store.dispatch('updateSettings', Settings);
 };
 
 </script>

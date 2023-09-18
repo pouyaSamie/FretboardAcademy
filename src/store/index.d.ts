@@ -1,39 +1,31 @@
 // store.d.ts
 
 // Import the types from Vuex
-import { Store as VuexStore, CommitOptions, DispatchOptions } from 'vuex';
+import { Store as VuexStore, Commit} from 'vuex';
 
 // Define your own types for the store state
-interface State {
-  selectedNotes: string[];
-  selectedStrings: string[];
-  frets: number;
+export interface State {
+  selectedNotes: string[],
+  selectedStrings: string[],
+  frets: number,
 }
+
 
 // Define your mutations
 type Mutations = {
-  updateSelectedNotes(state: State, selectedNotes: string[]): void;
-  updateSelectedStrings(state: State, selectedStrings: string[]): void;
-  updateFrets(state: State, frets: number): void;
+  UPDATE_SETTINGS(state: State, newSettings: State): void;
 };
 
 // Define your actions
 type Actions = {
-  UpdateSettings(
-    context: CommitOptions,
-    payload: {
-      selectedNotes: string[];
-      selectedStrings: string[];
-      frets: number;
-    }
-  ): void;
+  updateSettings(context: Commit, newSettings: State): void;
 };
 
 // Define your getters
 type Getters = {
-  getSelectedNotes(state: State): string[];
-  getSelectedStrings(state: State): string[];
-  getFrets(state: State): number;
+  selectedNotes(state: State): string[];
+  selectedStrings(state: State): string[];
+  frets(state: State): number;
 };
 
 // Extend the store type to include your custom state, mutations, actions, and getters
