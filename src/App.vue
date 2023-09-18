@@ -1,20 +1,14 @@
 <template>
   <NavBar />
-  <GuitarNeck msg="Welcome to Your Vue.js + TypeScript App"/>
+  <GuitarNeck v-if="false" />
+  <NoteSelect  />
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import GuitarNeck from './components/GuitarNeck.vue';
+<script setup lang="ts">
 import NavBar from './components/NavBar.vue';
+import GuitarNeck from './components/GuitarNeck.vue';
+import NoteSelect from './components/NoteSelect.vue';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    NavBar,
-    GuitarNeck,
-  },
-});
 </script>
 
 <style lang="less">

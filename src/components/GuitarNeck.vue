@@ -52,7 +52,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import {
+  ref,
+  watch,
+  onMounted,
+} from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+// const selectedNotes = computed(() => store.getters.selectedNotes);
+// const selectedStrings = computed(() => store.getters.selectedStrings);
+// const frets = computed(() => store.getters.frets);
+
+const logNewSettings = (newSettings:object) => {
+  console.log('New settings:', newSettings);
+};
+
+watch(
+  () => store.state.settings,
+  (newSettings) => {
+    logNewSettings(newSettings);
+  },
+);
 
 const guitarOuter = ref<HTMLElement | null>(null);
 const strings = [
@@ -71,6 +92,12 @@ const selectRandomNote = () => {
   const randomIndex = Math.floor(Math.random() * notes.length);
   randomlySelectedNote = notes[randomIndex];
 };
+
+// const StartNoteSelect = (notes:string[], selectedStrings:string[], fret:number) => {
+//   console.log(notes);
+//   console.log(selectedStrings);
+//   console.log(fret);
+// };
 
 const checkNote = (event: MouseEvent | KeyboardEvent, clickedNote: string) => {
   const target = event.currentTarget as HTMLElement;
