@@ -1,50 +1,63 @@
 <template>
   <div class="container">
-    <button class="flex-2">Start</button>
+    <button @click="StartNoteSelect"
+     class="flex-2">Start</button>
     <div class="flex-tiny"><b>Notes</b></div>
-    <ul class="note-box">
-      <li
-        v-for="note in notes"
-        :key="note"
-        class="note"
-        :class="{ selected: isSelected(note) }"
-        @click="toggleSelection(note)"
-        @keydown.enter="toggleSelection(note)"
-      >{{ note }}</li>
+    <ul class="info-box">
+      <li v-for="note in notes" :key="note"
+       class="info-item" :class="{ selected: isNoteSelected(note) }"
+        @click="toggleNoteSelection(note)"
+        @keydown.enter="toggleNoteSelection(note)">{{ note }}</li>
     </ul>
     <div class="flex-tiny"><b>Strings</b></div>
-      <ul class="note-box">
-      <li
-        v-for="string in strings"
-        :key="string"
-        class="note"
-      >{{ string }}</li>
+    <ul class="info-box">
+      <li v-for="string in strings" :key="string"
+        class="info-item" :class="{ selected: isStringSelected(string) }"
+        @click="toggleStringSelection(string)"
+        @keydown.enter="toggleStringSelection(string)">{{ string }}</li>
     </ul>
     <div class="flex-tiny"><span>Fret</span></div>
     <label htmlFor="formControlRange" for="formControlRange">
-    <input type="range" id="formControlRange" v-model="frets">
-  </label>
+      <input type="range" id="formControlRange" v-model="frets">
+    </label>
   </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 
+const store = useStore();
+// initlize Valus
 const selectedNotes = ref<string[]>(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
 const selectedstrings = ref<string[]>(['high-E', 'B', 'G', 'D', 'A', 'low-E']);
 const frets = ref<number>(24);
 const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 const strings = ['high-E', 'B', 'G', 'D', 'A', 'low-E'];
 
-const isSelected = (note: string) => selectedNotes.value.includes(note);
-const toggleSelection = (note: string) => {
+// Functions
+const isNoteSelected = (note: string) => selectedNotes.value.includes(note);
+const toggleNoteSelection = (note: string) => {
   const index = selectedNotes.value.indexOf(note);
-  if (index === -1) {
-    // Note is not selected, so add it to the selectedNotes array
-    selectedNotes.value.push(note);
-  } else {
-    // Note is already selected, so remove it from the selectedNotes array
-    selectedNotes.value.splice(index, 1);
-  }
+  if (index === -1) selectedstrings.value.push(note);
+  else selectedstrings.value.splice(index, 1);
+};
+
+const isStringSelected = (string: string) => selectedstrings.value.includes(string);
+const toggleStringSelection = (note: string) => {
+  const index = selectedstrings.value.indexOf(note);
+  if (index === -1) selectedstrings.value.push(note);
+  else selectedstrings.value.splice(index, 1);
+};
+
+// store
+const Settings = {
+  selectedNotes,
+  selectedstrings,
+  frets,
+};
+
+const StartNoteSelect = () => {
+  store.dispatch('UpdateSettings', Settings);
 };
 
 </script>
@@ -61,16 +74,21 @@ div .container {
   margin: 0px 4%;
   line-height: 50px;
 }
-.note.selected {
+
+.info-item.selected {
   background-color: rgba(14, 13, 12, 0.4);
   color: white;
   padding: 13px;
   line-height: 0px;
+  -webkit-box-shadow: inset 2px 3px 5px 1px rgba(0, 0, 0, 0.39);
+  box-shadow: inset 2px 3px 5px 1px rgba(0, 0, 0, 0.39);
 }
+
 .flex-1 {
   flex: 1;
 }
-.flex-tiny{
+
+.flex-tiny {
   display: flex;
   flex: 0.1;
   background-color: #0000004f;
@@ -85,20 +103,22 @@ div .container {
   margin: 9px 30px;
 }
 
-.note-box {
+.info-box {
   flex: 1;
   display: flex;
   justify-content: space-around;
   margin: 14px 10px;
-  cursor: pointer; /* Add cursor pointer for selected notes */
+  cursor: pointer;
+  /* Add cursor pointer for selected notes */
 }
 
-.note {
+.info-item {
   padding: 12px;
   line-height: 0px;
 }
+
 ul,
-li{
+li {
   list-style: none
 }
 </style>
