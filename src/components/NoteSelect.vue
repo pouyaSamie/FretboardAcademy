@@ -2,6 +2,8 @@
   <div class="container">
     <button @click="StartNoteSelect"
      class="flex-2">Start</button>
+
+     <!-- Notes Section -->
     <div class="flex-tiny"><b>Notes</b></div>
     <ul class="info-box">
       <li v-for="note in notes" :key="note"
@@ -9,6 +11,8 @@
         @click="toggleNoteSelection(note)"
         @keydown.enter="toggleNoteSelection(note)">{{ note }}</li>
     </ul>
+
+     <!-- Strings Section -->
     <div class="flex-tiny"><b>Strings</b></div>
     <ul class="info-box">
       <li v-for="string in strings" :key="string"
@@ -16,25 +20,30 @@
         @click="toggleStringSelection(string)"
         @keydown.enter="toggleStringSelection(string)">{{ string }}</li>
     </ul>
+
+     <!-- Fret Section -->
     <div class="flex-tiny"><span>Fret</span></div>
     <label htmlFor="formControlRange" for="formControlRange">
       <input type="range" id="formControlRange" v-model="frets">
     </label>
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useStore } from 'vuex';
 
 const store = useStore();
-// initlize Valus
+
+// Initialize Values
 const selectedNotes = ref<string[]>(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
 const selectedstrings = ref<string[]>(['high-E', 'B', 'G', 'D', 'A', 'low-E']);
 const frets = ref<number>(24);
+
 const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 const strings = ['high-E', 'B', 'G', 'D', 'A', 'low-E'];
 
-// Functions
+// Note selection
 const isNoteSelected = (note: string) => selectedNotes.value.includes(note);
 const toggleNoteSelection = (note: string) => {
   const index = selectedNotes.value.indexOf(note);
@@ -42,6 +51,7 @@ const toggleNoteSelection = (note: string) => {
   else selectedstrings.value.splice(index, 1);
 };
 
+// String selection
 const isStringSelected = (string: string) => selectedstrings.value.includes(string);
 const toggleStringSelection = (note: string) => {
   const index = selectedstrings.value.indexOf(note);
