@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <button @click="StartNoteSelect"
-     class="flex-2">Start</button>
+     class="flex-2">{{!store.getters.IsStarted ? "Start" : "Stop"}}</button>
 
      <!-- Notes Section -->
     <div class="flex-tiny"><b>Notes</b></div>
@@ -63,10 +63,10 @@ const StartNoteSelect = () => {
   const settingsCopy = {
     selectedNotes: [...selectedNotes.value], // Create a shallow copy of the array
     selectedStrings: [...selectedStrings.value], // Create a shallow copy of the array
-    frets: frets.value,
+    frets: Number(frets.value),
   };
-
   store.dispatch('updateSettings', settingsCopy);
+  store.dispatch('updateStatus', !store.getters.IsStarted);
 };
 
 </script>

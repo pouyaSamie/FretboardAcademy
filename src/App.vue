@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import NavBar from './components/NavBar.vue';
-import GuitarNeck from './components/GuitarNeck.vue';
+import GuitarNeck from './components/Guitar/GuitarNeck.vue';
 import NoteSelect from './components/NoteSelect.vue';
 
 </script>
