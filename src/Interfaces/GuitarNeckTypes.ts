@@ -9,3 +9,9 @@ export interface StringType {
   class:string,
   notes:string[],
 }
+
+export interface NoteItem {
+  Name:string,
+  String:string,
+  Fret:number,
+}

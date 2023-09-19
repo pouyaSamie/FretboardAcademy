@@ -1,5 +1,5 @@
 import { State } from '@/store/State.Types';
-import { GuitarString, StringType } from '../../Interfaces/GuitarNeckTypes';
+import { GuitarString, StringType, NoteItem } from '../../Interfaces/GuitarNeckTypes';
 
 export const strings = [
   { id: 'high-E', class: 'string-highe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd'] },
@@ -15,12 +15,6 @@ export const selectRandomString = (stringArray:GuitarString[]) => {
   return stringArray[randomIndex];
 };
 
-export const selectRandomNote = (stringNotes:StringType) => {
-  const randomIndex = Math.floor(Math.random() * stringNotes.notes.length);
-  const fret = strings.filter((string) => string.id === stringNotes.id)[0].notes.indexOf(stringNotes.notes[randomIndex]);
-  return { Note: stringNotes.notes[randomIndex].toUpperCase(), String: stringNotes.id, fret };
-};
-
 export const GetStringAndNotes = (state: State): GuitarString[] => {
   const userNotes = state.selectedNotes.map((note) => note.toLowerCase()); // Convert all user notes to lowercase
   const userStrings = strings.filter((string) => state.selectedStrings.includes(string.id));
@@ -31,6 +25,13 @@ export const GetStringAndNotes = (state: State): GuitarString[] => {
       .filter((note) => userNotes.includes(note.toLowerCase())), // Convert the note to lowercase for comparison
   }));
   return noteInFrets;
+};
+
+export const selectRandomNote = (stringNotes:StringType) : NoteItem => {
+  const randomIndex = Math.floor(Math.random() * stringNotes.notes.length);
+  const fret = strings.filter((string) => string.id === stringNotes.id)[0].notes.indexOf(stringNotes.notes[randomIndex]);
+  const result : NoteItem = { Name: stringNotes.notes[randomIndex].toUpperCase(), String: stringNotes.id, Fret: fret };
+  return result;
 };
 
 export const checkNote = (
