@@ -27,6 +27,7 @@ type Getters = {
   selectedNotes(state: State): string[];
   selectedStrings(state: State): string[];
   frets(state: State): number;
+  IsStarted(state: State): boolean;
 };
 
 // Extend the store type to include your custom state, mutations, actions, and getters

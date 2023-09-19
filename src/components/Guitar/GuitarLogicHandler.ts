@@ -18,7 +18,7 @@ export const selectRandomString = (stringArray:GuitarString[]) => {
 export const selectRandomNote = (stringNotes:StringType) => {
   const randomIndex = Math.floor(Math.random() * stringNotes.notes.length);
   const fret = strings.filter((string) => string.id === stringNotes.id)[0].notes.indexOf(stringNotes.notes[randomIndex]);
-  return { stringNotes: stringNotes.notes[randomIndex].toUpperCase(), string: stringNotes.id, fret };
+  return { Note: stringNotes.notes[randomIndex].toUpperCase(), String: stringNotes.id, fret };
 };
 
 export const GetStringAndNotes = (state: State): GuitarString[] => {

@@ -56,6 +56,7 @@ const store = useStore<State>();
 watch(
   () => store.state, // Watch the entire state object
   (newState) => {
+    if (!store.getters.IsStarted) return;
     const stringArray = GetStringAndNotes(newState);
     const randomString = selectRandomString(stringArray);
     console.log(selectRandomNote(randomString));
