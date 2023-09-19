@@ -24,7 +24,8 @@
      <!-- Fret Section -->
     <div class="flex-tiny"><span>Fret</span></div>
     <label htmlFor="formControlRange" for="formControlRange">
-      <input type="range" id="formControlRange" v-model="frets">
+      <input type="range"  min = "4" max = "24" id="formControlRange" v-model="frets">
+      {{frets}}
     </label>
   </div>
 </template>
@@ -37,7 +38,7 @@ const store = useStore();
 
 // Initialize Values
 const selectedNotes = ref<string[]>(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
-const selectedstrings = ref<string[]>(['high-E', 'B', 'G', 'D', 'A', 'low-E']);
+const selectedStrings = ref<string[]>(['high-E', 'B', 'G', 'D', 'A', 'low-E']);
 const frets = ref<number>(24);
 
 const notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
@@ -47,27 +48,25 @@ const strings = ['high-E', 'B', 'G', 'D', 'A', 'low-E'];
 const isNoteSelected = (note: string) => selectedNotes.value.includes(note);
 const toggleNoteSelection = (note: string) => {
   const index = selectedNotes.value.indexOf(note);
-  if (index === -1) selectedstrings.value.push(note);
-  else selectedstrings.value.splice(index, 1);
+  if (index === -1) selectedNotes.value.push(note);
+  else selectedNotes.value.splice(index, 1);
 };
 
-// String selection
-const isStringSelected = (string: string) => selectedstrings.value.includes(string);
+const isStringSelected = (string: string) => selectedStrings.value.includes(string);
 const toggleStringSelection = (note: string) => {
-  const index = selectedstrings.value.indexOf(note);
-  if (index === -1) selectedstrings.value.push(note);
-  else selectedstrings.value.splice(index, 1);
-};
-
-// store
-const Settings = {
-  selectedNotes,
-  selectedstrings,
-  frets,
+  const index = selectedStrings.value.indexOf(note);
+  if (index === -1) selectedStrings.value.push(note);
+  else selectedStrings.value.splice(index, 1);
 };
 
 const StartNoteSelect = () => {
-  store.dispatch('UpdateSettings', Settings);
+  const settingsCopy = {
+    selectedNotes: [...selectedNotes.value], // Create a shallow copy of the array
+    selectedStrings: [...selectedStrings.value], // Create a shallow copy of the array
+    frets: frets.value,
+  };
+
+  store.dispatch('updateSettings', settingsCopy);
 };
 
 </script>

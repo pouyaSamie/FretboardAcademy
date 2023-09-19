@@ -33,8 +33,8 @@
       <span v-for="(note, index) in string.notes" :key="index"
             :class="['note', 'note-' + note,
                    'pos' + index]"
-                   @click="checkNote($event,note)"
-                   @keydown.enter="checkNote($event,note)" >{{ note }}</span>
+                   @click="checkNote($event,note,index,string)"
+                   @keydown.enter="checkNote($event,note,index,string)" >{{ note }}</span>
       <!-- / NOTES -->
           <!-- / NOTES -->
         </span>
@@ -60,30 +60,28 @@ import {
 import { useStore } from 'vuex';
 
 const store = useStore();
-// const selectedNotes = computed(() => store.getters.selectedNotes);
-// const selectedStrings = computed(() => store.getters.selectedStrings);
-// const frets = computed(() => store.getters.frets);
-
-const logNewSettings = (newSettings:object) => {
-  console.log('New settings:', newSettings);
-};
-
 watch(
-  () => store.state.settings,
-  (newSettings) => {
-    logNewSettings(newSettings);
+  () => store.state, // Watch the entire state object
+  (newState) => {
+    console.log('State has changed', newState);
   },
+  { deep: true },
 );
 
 const guitarOuter = ref<HTMLElement | null>(null);
+interface StringType {
+  id:string,
+  class:string,
+  notes:string[],
+}
 const strings = [
   { id: 'highE', class: 'string-highe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd'] },
-  { id: 'B', class: 'string-b', notes: ['a#', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a'] },
+  { id: 'B', class: 'string-b', notes: ['b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a'] },
   { id: 'G', class: 'string-g', notes: ['g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f'] },
   { id: 'D', class: 'string-d', notes: ['d', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c'] },
   { id: 'A', class: 'string-a', notes: ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g'] },
   { id: 'lowE', class: 'string-lowe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd'] },
-];
+] as StringType[];
 
 let randomlySelectedNote: string | null = null;
 
@@ -93,13 +91,13 @@ const selectRandomNote = () => {
   randomlySelectedNote = notes[randomIndex];
 };
 
-// const StartNoteSelect = (notes:string[], selectedStrings:string[], fret:number) => {
-//   console.log(notes);
-//   console.log(selectedStrings);
-//   console.log(fret);
-// };
-
-const checkNote = (event: MouseEvent | KeyboardEvent, clickedNote: string) => {
+const checkNote = (
+  event: MouseEvent | KeyboardEvent,
+  clickedNote: string,
+  index : number,
+  string: StringType,
+) => {
+  console.log(clickedNote, index, string.id);
   const target = event.currentTarget as HTMLElement;
   if (target) target.classList.add('on');
   setTimeout(() => {
@@ -113,7 +111,6 @@ const checkNote = (event: MouseEvent | KeyboardEvent, clickedNote: string) => {
 onMounted(() => {
   if (guitarOuter.value) {
     const scrollPosition = guitarOuter.value.scrollWidth * 0.5;
-    console.log(guitarOuter.value);
     guitarOuter.value.scrollLeft = (scrollPosition * -1);
   }
 });

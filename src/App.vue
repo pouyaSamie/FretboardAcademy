@@ -1,6 +1,6 @@
 <template>
   <NavBar />
-  <GuitarNeck v-if="false" />
+  <GuitarNeck />
   <NoteSelect  />
 </template>
 

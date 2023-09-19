@@ -913,7 +913,7 @@
   position: absolute;
   left: 0;
   background: url(../img/hori-head.png) no-repeat left center;
-  z-index: 1;
+ 
 }
 .GUITARHORIZONTAL .guitar-neck {
   height: 210px;
