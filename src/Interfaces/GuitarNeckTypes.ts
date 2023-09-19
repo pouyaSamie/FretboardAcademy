@@ -4,12 +4,6 @@ export interface GuitarString {
   notes: string[];
 }
 
-export interface StringType {
-  id:string,
-  class:string,
-  notes:string[],
-}
-
 export interface NoteItem {
   Name:string,
   String:string,

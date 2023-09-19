@@ -1,5 +1,5 @@
 import { State } from '@/store/State.Types';
-import { GuitarString, StringType, NoteItem } from '../../Interfaces/GuitarNeckTypes';
+import { GuitarString, NoteItem } from '../../Interfaces/GuitarNeckTypes';
 
 export const strings = [
   { id: 'high-E', class: 'string-highe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c', 'c#', 'd'] },
@@ -8,7 +8,7 @@ export const strings = [
   { id: 'D', class: 'string-d', notes: ['d', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'b', 'b', 'c'] },
   { id: 'A', class: 'string-a', notes: ['a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g'] },
   { id: 'low-E', class: 'string-lowe', notes: ['e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#', 'b', 'c', 'c#', 'd'] },
-] as StringType[];
+] as GuitarString[];
 
 export const selectRandomString = (stringArray:GuitarString[]) => {
   const randomIndex = Math.floor(Math.random() * stringArray.length);
@@ -27,23 +27,24 @@ export const GetStringAndNotes = (state: State): GuitarString[] => {
   return noteInFrets;
 };
 
-export const selectRandomNote = (stringNotes:StringType) : NoteItem => {
+export const selectRandomNote = (stringNotes:GuitarString) : NoteItem => {
   const randomIndex = Math.floor(Math.random() * stringNotes.notes.length);
   const fret = strings.filter((string) => string.id === stringNotes.id)[0].notes.indexOf(stringNotes.notes[randomIndex]);
   const result : NoteItem = { Name: stringNotes.notes[randomIndex].toUpperCase(), String: stringNotes.id, Fret: fret };
   return result;
 };
 
-export const checkNote = (
-  event: MouseEvent | KeyboardEvent,
-  clickedNote: string,
-  index: number,
-  string: StringType,
-) => {
-  console.log(clickedNote, index, string.id);
-  const target = event.currentTarget as HTMLElement;
-  if (target) target.classList.add('on');
-  setTimeout(() => {
-    target.classList.remove('on');
-  }, 2000);
+export const ChooseRandomNote = (newState : State) : NoteItem => {
+  const stringArray = GetStringAndNotes(newState);
+  const randomString = selectRandomString(stringArray);
+  return selectRandomNote(randomString);
+};
+
+export const IsMatch = (fret: number, selectedString: GuitarString, selectedNote: string, targetNote: NoteItem | null) : boolean => {
+  if (targetNote == null) return false;
+  if (targetNote.Fret === 0 || targetNote.Fret === 12) {
+    // eslint-disable-next-line
+    fret = targetNote.Fret;
+  }
+  return (targetNote.Fret === fret && targetNote.Name.toLowerCase() === selectedNote.toLowerCase() && targetNote.String.toLowerCase() === selectedString.id.toLowerCase());
 };
