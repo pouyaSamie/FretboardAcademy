@@ -9,7 +9,7 @@
                   <span class='icon-bar'></span>
                 </button>
                 <div class='brand'>Fretboard Academy - Master the guitar fretboard</div>
-                <DropDown Title='Choose Root' :items='choseNotesItems' />
+                <DropDown v-if="false" Title='Choose Root' :items='choseNotesItems' />
               </div>
             </div>
           </div>
