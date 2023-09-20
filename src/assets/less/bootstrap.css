@@ -327,7 +327,7 @@
   height: 130px;
   top: 0;
   background: url(../img/vert-head-mobile.png) no-repeat center center;
-  z-index: 2;
+
 }
 .GUITARVERTICAL .guitar-neck {
   width: 210px;
@@ -3769,7 +3769,7 @@ a:focus {
   height: 130px;
   top: 0;
   background: url(../img/vert-head-mobile.png) no-repeat center center;
-  z-index: 2;
+
 }
 .guitar-neck {
   width: 210px;
@@ -6534,7 +6534,7 @@ input[type="submit"].btn.btn-mini {
   color: #777;
   width: 95px;
   height: 60px;
-  background: url(../img/logo.png) no-repeat center;
+  background: url(../img/logo.svg) no-repeat center;
   font: 0/0 a;
   color: transparent;
   text-shadow: none;
