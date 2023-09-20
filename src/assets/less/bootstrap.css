@@ -6534,12 +6534,13 @@ input[type="submit"].btn.btn-mini {
   color: #777;
   width: 95px;
   height: 60px;
-  background: url(../img/logo.svg) no-repeat center;
+  background: url(../img/logo.png) no-repeat center;
   font: 0/0 a;
   color: transparent;
   text-shadow: none;
   background-color: transparent;
   border: 0;
+  background-size: 100% 70% ;
 }
 .navbar .brand:hover,
 .navbar .brand:focus {
