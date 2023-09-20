@@ -9,6 +9,8 @@ Welcome to the Fretboard Academy! This web application is designed to help you m
 - Practice identifying notes in different positions.
 - Responsive design for desktop and mobile devices.
 
+![Alt text](src/assets/img/Screenshot.png)
+
 ## Getting Started
 
 Follow these instructions to get the project up and running on your local machine.
