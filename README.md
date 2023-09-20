@@ -2,6 +2,8 @@
 
 Welcome to the Fretboard Academy! This web application is designed to help you master the guitar fretboard by providing an interactive and engaging learning experience. This project is built with Vue.js and was inspired by the UI of [FretMap](https://github.com/thathurtabit/FretMap) by ThatHurtABit.
 
+website: https://fretboardacademy.xyz
+
 ## Features
 
 - Interactive and visual representation of the guitar fretboard.

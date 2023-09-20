@@ -1,18 +1,30 @@
 <template>
-          <div class='navbar navbar-inverse navbar-fixed-top'>
-            <div class='navbar-inner'>
-              <div class='row-fluid'>
-                <button type='button' class='btn btn-navbar'
-                        data-toggle='collapse' data-target='.nav-collapse'>
-                  <span class='icon-bar'></span>
-                  <span class='icon-bar'></span>
-                  <span class='icon-bar'></span>
-                </button>
-                <div class='brand'>Fretboard Academy - Master the guitar fretboard</div>
-                <DropDown v-if="false" Title='Choose Root' :items='choseNotesItems' />
-              </div>
-            </div>
-          </div>
+  <div class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='navbar-inner'>
+      <div class='row-fluid'>
+        <button type='button' class='btn btn-navbar' data-toggle='collapse' data-target='.nav-collapse'>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+        </button>
+        <div class='brand'>Fretboard Academy - Master the guitar fretboard</div>
+        <DropDown v-if='false' Title='Choose Root' :items='choseNotesItems' />
+        <a
+          href="https://github.com/pouyaSamie/FretboardAcademy"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="github-link"
+        >
+          <img
+            src='../assets/img/github-logo.png'
+            alt='GitHub'
+            width='32'
+            height='32'
+          />
+        </a>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup lang='ts'>
 import { DropDownItem } from '@/Interfaces/DropDownItem';
@@ -82,4 +94,9 @@ const choseNotesItems: DropDownItem[] = [
 ];
 </script>
 <style lang='less'>
+.github-link{
+  float: right;
+  display: block;
+  margin: 10px;
+}
 </style>
