@@ -24,13 +24,13 @@ Follow these instructions to get the project up and running on your local machin
 1. Clone the repository to your local machine.
 
 ```bash
-git clone git@github.com:pouyaSamie/fretboard-memorization.git
+git@github.com:pouyaSamie/FretboardAcademy.git
 ```
 
 2. Navigate to the project directory.
 
 ```bash
-cd fretboard-memorization
+cd FretboardAcademy
 ```
 
 3. Install the project dependencies.
@@ -66,4 +66,4 @@ Built with Vue.js.
 ### Contact
 If you have any questions or suggestions, feel free to contact me.
 
-Happy guitar fretboard memorization!
+Happy Learning guitar fretboard!
