@@ -134,4 +134,11 @@ const checkUserNote = (
 .on.correct{
   background-color: green;
 }
+
+@media (max-width: 979px) and (orientation: portrait){
+  .note-to-find{
+    left: unset;
+    right: 77%;
+  }
+}
 </style>

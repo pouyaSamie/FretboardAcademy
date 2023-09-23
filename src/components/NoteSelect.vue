@@ -130,4 +130,15 @@ ul,
 li {
   list-style: none
 }
+
+@media (max-width: 979px) and (orientation: portrait){
+  .container{
+    z-index:100;
+    overflow:scroll;
+    background-color: rgba(110, 100, 93, 1) !important;
+  }
+  .info-item{
+    width: 50px;
+  }
+}
 </style>
