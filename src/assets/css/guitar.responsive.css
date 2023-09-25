@@ -1171,7 +1171,7 @@
   bottom: -135px;
 }
 .GUITARHORIZONTAL .guitar-neck .marker.marker1 {
-  left: 218px;
+  left: 205px;
 }
 .GUITARHORIZONTAL .guitar-neck .marker.marker1 i::before,
 .GUITARHORIZONTAL .guitar-neck .marker.marker1 i::after {
@@ -2021,7 +2021,7 @@
   bottom: -135px;
 }
 .HORIZONTALNECKSTUFF .marker.marker1 {
-  left: 218px;
+  left: 205px;
 }
 .HORIZONTALNECKSTUFF .marker.marker1 i::before,
 .HORIZONTALNECKSTUFF .marker.marker1 i::after {
@@ -4464,35 +4464,35 @@
     bottom: -135px;
   }
   .guitar-neck .marker.marker1 {
-    left: 218px;
+    left: 205px;
   }
   .guitar-neck .marker.marker1 i::before,
   .guitar-neck .marker.marker1 i::after {
     content: '3';
   }
   .guitar-neck .marker.marker2 {
-    left: 402px;
+    left: 380px;
   }
   .guitar-neck .marker.marker2 i::before,
   .guitar-neck .marker.marker2 i::after {
     content: '5';
   }
   .guitar-neck .marker.marker3 {
-    left: 572px;
+    left: 542px;
   }
   .guitar-neck .marker.marker3 i::before,
   .guitar-neck .marker.marker3 i::after {
     content: '7';
   }
   .guitar-neck .marker.marker4 {
-    left: 727px;
+    left: 690px;
   }
   .guitar-neck .marker.marker4 i::before,
   .guitar-neck .marker.marker4 i::after {
     content: '9';
   }
   .guitar-neck .marker.marker5 {
-    left: 950px;
+    left: 899px;
     top: 33%!important;
   }
   .guitar-neck .marker.marker5:before {
@@ -4501,7 +4501,7 @@
     right: 0;
   }
   .guitar-neck .marker.marker5::after {
-    bottom: none;
+    display: none;
   }
   .guitar-neck .marker.marker5 i::before {
     content: '12';
@@ -4510,7 +4510,7 @@
     right: 0;
   }
   .guitar-neck .marker.marker5b {
-    left: 950px;
+    left:  899px;
     bottom: 33%!important;
     top: auto!important;
   }
@@ -4524,33 +4524,33 @@
   }
   .guitar-neck .marker.marker5b i::after {
     content: '12';
-    bottom: -98px;
+    bottom: -100px;
     left: 0;
     right: 0;
   }
   .guitar-neck .marker.marker6 {
-    left: 1150px;
+    left: 1080px;
   }
   .guitar-neck .marker.marker6 i::before,
   .guitar-neck .marker.marker6 i::after {
     content: '15';
   }
   .guitar-neck .marker.marker7 {
-    left: 1280px;
+    left: 1199px;
   }
   .guitar-neck .marker.marker7 i::before,
   .guitar-neck .marker.marker7 i::after {
     content: '17';
   }
   .guitar-neck .marker.marker8 {
-    left: 1402px;
+    left: 1311px;
   }
   .guitar-neck .marker.marker8 i::before,
   .guitar-neck .marker.marker8 i::after {
     content: '19';
   }
   .guitar-neck .marker.marker9 {
-    left: 1524px;
+    left: 1420px;
   }
   .guitar-neck .marker.marker9 i::before,
   .guitar-neck .marker.marker9 i::after {
