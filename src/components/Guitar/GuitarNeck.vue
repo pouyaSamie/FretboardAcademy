@@ -27,7 +27,7 @@
         <span v-for="string in strings" :key="string.id" class="string" :class="[ string.class,{ 'highlighted': isSelected(string,selectedNote) }]">
 
           <!-- NOTES -->
-          <span v-for="(note, index) in string.notes" :key="index" :class="['on','note', 'note-' + note, 'pos' + index, ]"
+          <span v-for="(note, index) in string.notes" :key="index" :class="['note', 'note-' + note, 'pos' + index, ]"
           @click="checkUserNote($event, index, string, note, selectedNote)"
           @keydown.enter="checkUserNote($event, index, string, note, selectedNote)"> {{ note }} </span>
 
@@ -104,9 +104,9 @@ const checkUserNote = (
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped >
-@import '@/assets/css/guitar.css';
-@import '@/assets/css/guitar.responsive.css';
+<style scoped  lang="scss">
+@import '@/assets/scss/bootstrap.scss';
+@import '@/assets/scss/responsive.scss';
 .note {
   cursor: pointer;
 }

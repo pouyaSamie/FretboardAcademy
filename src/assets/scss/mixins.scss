@@ -1,0 +1,1481 @@
+// CSS ANIMATIONS
+
+// DURATION
+@mixin font_animation-duration($animationDuration: 1s){
+  -webkit-animation-duration: $animationDuration;
+     -moz-animation-duration: $animationDuration;
+       -o-animation-duration: $animationDuration;
+          animation-duration: $animationDuration;
+  -webkit-animation-fill-mode: both;
+     -moz-animation-fill-mode: both;
+       -o-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+
+// TRANSITION DELAY
+@mixin font_transition-delay($transition-delay){
+  -webkit-transition-delay: $transition-delay;
+     -moz-transition-delay: $transition-delay;
+       -o-transition-delay: $transition-delay;
+          transition-delay: $transition-delay;
+}
+
+@mixin opacity($alpha) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $alpha * 100 + ")";
+  filter: alpha(opacity=$alpha * 100);
+  opacity:($alpha)
+}
+
+@mixin rotate($angle) {
+  transform: rotate($angle);
+}
+
+/// LOADER ANIMATION IN
+@-webkit-keyframes loaderIn {
+    0% {
+      -webkit-transform: translate(0, -20px);
+      @include opacity(0);
+      top: 60%;
+    } 
+    70% {
+      -webkit-transform: translate(0,-5px);
+    } 
+    100% {
+      -webkit-transform: translate(0,0);
+      @include opacity(100);
+      top: 50%;
+    } 
+}
+
+@-moz-keyframes loaderIn {
+    0% {
+      -moz-transform: translate(0, -20px);
+      @include opacity(0);
+      top: 60%;
+    } 
+    70% {
+      -moz-transform: translate(0,-5px);
+    } 
+    100% {
+      -moz-transform: translate(0,0);
+      @include opacity(100);
+      top: 50%;
+    } 
+}
+
+@-o-keyframes loaderIn {
+    0% {
+      -o-transform: translate(0, -20px);
+      @include opacity(0);
+      top: 60%;
+    } 
+    70% {
+      -o-transform: translate(0,-5px);
+    } 
+    100% {
+      -o-transform: translate(0,0);
+      @include opacity(100);
+      top: 50%;
+    } 
+}
+
+
+@keyframes loaderIn {
+    0% {
+      transform: translate(0, -20px);
+      @include opacity(0);
+      top: 60%;
+    } 
+    70% {
+      transform: translate(0,-5px);
+    } 
+    100% {
+      transform: translate(0,0);
+      @include opacity(100);
+      top: 50%;
+    } 
+}
+@mixin animation-duration($duration) {
+  -webkit-animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  -ms-animation-duration: $duration;
+  -o-animation-duration: $duration;
+  animation-duration: $duration;
+}
+.animateLoaderIn {
+  -webkit-animation-name: loaderIn;
+  -moz-animation-name: loaderIn;
+  -ms-animation-name: loaderIn;
+  -o-animation-name: loaderIn;
+  animation-name: loaderIn;
+    @include animation-duration(0.3s);
+}
+
+
+/// LOADER ANIMATION OUT
+@-webkit-keyframes loaderOut {
+    0% {
+      -webkit-transform: translate(0,0);
+      @include opacity(100);
+    } 
+    70% {
+      -webkit-transform: translate(0, 5px);
+    } 
+    100% {
+      -webkit-transform: translate(0, 20px);
+      @include opacity(0);
+      top: 60%;
+    } 
+}
+
+@-moz-keyframes loaderOut {
+    0% {
+      -moz-transform: translate(0,0);
+      @include opacity(100);
+    } 
+    70% {
+      -moz-transform: translate(0, 5px);
+    } 
+    100% {
+      -moz-transform: translate(0, 20px);
+      @include opacity(0);
+      top: 60%;
+    } 
+}
+
+@-o-keyframes loaderOut {
+    0% {
+      -o-transform: translate(0,0);
+      @include opacity(100);
+    } 
+    70% {
+      -o-transform: translate(0, 5px);
+    } 
+    100% {
+      -o-transform: translate(0, 20px);
+      @include opacity(0);
+      top: 60%;
+    } 
+}
+
+
+@keyframes loaderOut {
+    0% {
+      transform: translate(0,0);
+      @include opacity(100);
+    } 
+    70% {
+      transform: translate(0, 5px);
+    } 
+    100% {
+      transform: translate(0, 20px);
+      @include opacity(0);
+      top: 60%;
+    }  
+}
+
+.animateLoaderOut {
+  -webkit-animation-name: loaderOut;
+  -moz-animation-name: loaderOut;
+  -ms-animation-name: loaderOut;
+  -o-animation-name: loaderOut;
+  animation-name: loaderOut;
+    @include animation-duration(0.2s);
+}
+
+
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin border-radius($percent) {
+  border-radius: $percent;
+}
+
+@mixin box-shadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin opacity($value) {
+  opacity: $value;
+}
+
+@mixin transition($duration) {
+  transition: $duration;
+}
+
+// NECK BITS FOR GUITAR (VERTICAL)
+
+@mixin VERTICALNECKSTUFF { 
+  // --------------------
+    // STRINGS
+    .string {
+      position: absolute;
+      top: 0;
+      height: $neckLength;
+      @include box-shadow(0 0 2px rgba(0,0,0,0.3));
+      z-index: 3;
+      // INDIVIDUAL
+      &.string-lowe {
+        width: 7px;
+        background: url(@/assets/img/vert-lowe.png) repeat-y;
+        left: 15px;
+      }
+      &.string-a {
+        width: 6px;
+        background: url(@/assets/img/vert-a.png) repeat-y;
+        left: 49px;
+      }
+      &.string-d {
+        width: 5px;
+        background: url(@/assets/img/vert-d.png) repeat-y;
+        left: 83px;
+      }
+      &.string-g {
+        width: 5px;
+        background: url(@/assets/img/vert-g.png) repeat-y;
+        left: 119px;
+      }
+      &.string-b {
+        width: 4px;
+        background: url(@/assets/img/vert-b.png) repeat-y;
+        left: 154px;
+      }
+      &.string-highe {
+        width: 3px;
+        background: url(@/assets/img/vert-highe.png) repeat-y;
+        left: 188px;
+      }
+    }
+  }
+
+// GUITAR BITS VARIABLES
+@mixin note-styles {
+  width: 21px;
+  height: 22px;
+  // @include square(22px);
+      line-height: 26px;
+      @include border-radius(100%);
+      color: $white;
+      text-align: center;
+      font-size: $baseFontSize + 1;
+      font-weight: 500;
+      font-family: $headingsFontFamily;      
+      text-shadow: 0 1px 1px rgba(0,0,0,0.5);
+      text-transform: uppercase;
+      border: 2px solid lighten($grayDark, 15%);
+      @include box-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+      @include opacity(0);
+      @include transition(0.3s);
+      background-color: #151516 !important;
+      // SHARPS or FLATS
+      i {
+        font-style: normal;
+        position: absolute;
+        text-transform: lowercase;
+        font-size: $baseFontSize - 3;
+        @include opacity(0);
+      }
+      // SHOW
+      &.on, &.on i {
+        @include opacity(100);
+        @include transition(0.3s);
+      }
+}
+
+
+@mixin HORIZONTALNECKSTUFF-LEFTY { 
+  // --------------------
+     // STRINGS
+     .string {
+       position: absolute;
+       left: 0!important;
+       margin-left: 0!important;
+       width: $neckLength!important;
+       @include box-shadow(0 0 2px rgba(0,0,0,0.3));
+       z-index: 3;
+       // INDIVIDUAL
+       &.string-lowe {
+         height: 7px;
+         background: url(@/assets/img/hori-lowe.png) repeat-x;
+         bottom: 15px;
+         top: auto;
+       }
+       &.string-a {
+         height: 6px;
+         background: url(@/assets/img/hori-a.png) repeat-x;
+         bottom: 49px;
+         top: auto;
+       }
+       &.string-d {
+         height: 5px;
+         background: url(@/assets/img/hori-d.png) repeat-x;
+         bottom: 83px;
+         top: auto;
+       }
+       &.string-g {
+         height: 5px;
+         background: url(@/assets/img/hori-g.png) repeat-x;
+         bottom: 119px;
+         top: auto;
+       }
+       &.string-b {
+         height: 4px;
+         background: url(@/assets/img/hori-b.png) repeat-x;
+         bottom: 154px;
+         top: auto;
+       }
+       &.string-highe {
+         height: 3px;
+         background: url(@/assets/img/hori-highe.png) repeat-x;
+         bottom: 188px;
+         top: auto;
+       }
+     }
+ 
+     // --------------------
+     // STRING NOTES
+     .note {
+       @include note-styles; // MIXINS  
+       
+       margin-right: 50px;
+       margin-left: 0;
+       margin-top: -12px;      
+       display: block;
+       float: right;
+       
+       // OPEN NOTE
+       &.pos0 {
+         @include open-note-styles; // MIXINS
+         margin-right: -46px;
+         margin-left: 0;
+       }
+       // ROOT NOTE
+       &.root, &.root.pos0 {
+         @include root-note-styles; // MIXINS
+       }
+       // SPACE OUT THE NOTES
+       & + .note {
+         margin-right: 33px;
+         margin-left: 0;
+         margin-top: -12px;
+       }
+       &.pos1 {
+         margin-right: 33px;
+         margin-left: 0;
+       }
+       &.pos2, &.pos3 {
+         margin-right: 67px;
+         margin-left: 0;
+       }
+       &.pos4 {
+         margin-right: 69px;
+         margin-left: 0;
+       }
+       &.pos5 {
+         margin-right: 64px;
+         margin-left: 0;
+       }
+       &.pos6, &.pos7 {
+         margin-right: 59px;
+         margin-left: 0;
+       }
+       &.pos8 {
+         margin-right: 54px;
+         margin-left: 0;
+       }
+       &.pos9, &.pos10, &.pos11  {
+         margin-right: 49px;
+         margin-left: 0;
+       }
+       &.pos12 {
+       margin-right: 49px;
+       margin-left: 0;
+       }
+       &.pos13 {
+         margin-right: 43px;
+         margin-left: 0;
+       }
+       &.pos14 {
+         margin-right: 39px;
+         margin-left: 0;
+       }
+       &.pos15, &.pos16, &.pos17  {
+         margin-right: 39px;
+         margin-left: 0;
+       }
+       &.pos18  {
+         margin-right: 37px;
+         margin-left: 0;
+       }
+       &.pos19 {
+         margin-right: 32px;
+         margin-left: 0;
+       }
+       &.pos20, &.pos21  {
+         margin-right: 35px;
+         margin-left: 0;
+       }
+       &.pos22  {
+         margin-right: 34px;
+         margin-left: 0;
+       }
+     }
+     
+     // --------------------
+     // MARKERS
+     .marker {
+       @include marker-styles; // MIXINS
+       position: absolute;
+       bottom: 50%;
+       margin-bottom: -15px;
+       top: 50%!important;
+       margin-top: -15px!important;
+       margin-left: 0;
+       // BEFORE & AFTER MARKER
+       &::before, &::after {
+         position: absolute;
+         left: 0;
+         right: 0;
+       }
+       &::before {
+         top: -135px;
+         @include rotate(45deg);
+         @include border-radius(100% 100% 0 100%);
+       }
+       &::after {
+         bottom: -135px;
+         @include rotate(45deg);
+         @include border-radius(0 100% 100% 100%);
+       }
+       // BEFORE & AFTER MARKER 'I'
+       i {        
+         position: absolute;
+         &::before, &::after {
+           position: absolute;
+           left: 0;
+           right: 0;
+         }
+         &::before {
+           top: -135px;
+         }
+         &::after {
+           bottom: -135px;
+         }
+       }
+ 
+       // INDIVIDUAL
+       &.marker1 {
+         right: 224px;
+         left: auto;
+         i::before, i::after {
+           content: '3';
+         }
+       }
+       &.marker2 {
+         right: 415px;
+         left: auto;
+         i::before, i::after {
+           content: '5';
+         }
+       }
+       &.marker3 {
+         right: 591px;
+         left: auto;
+         i::before, i::after {
+           content: '7';
+         }
+       }
+       &.marker4 {
+         right: 753px;
+         left: auto;
+         i::before, i::after {
+           content: '9';
+         }
+       }
+       &.marker5 {
+         right: 986px;
+         left: auto;
+         top: 33%!important;;
+         &:before {
+           top: -100px;
+           left: 0;
+           right: 0;
+         }
+         &::after {
+           bottom: none;
+         }
+         i::before {
+           content: '12';
+           top: -98px;
+           left: 0;
+           right: 0;
+         }
+       }
+       &.marker5b {
+         right: 986px;
+         left: auto;
+         bottom: 33%!important;
+         top: auto!important;
+         &:after {
+           bottom: -100px;
+           left: 0;
+           right: 0;
+         }
+         &::before {
+           display: none;
+         }
+         i::after {
+           content: '12';
+           bottom: -98px;
+           left: 0;
+           right: 0;
+         }       
+       }
+       &.marker6 {
+         right: 1195px;
+         left: auto;
+         i::before, i::after {
+           content: '15';
+         }
+       }
+       &.marker7 {
+         right: 1331px;
+         left: auto;
+         i::before, i::after {
+           content: '17';
+         }
+       }
+       &.marker8 {
+         right: 1460px;
+         left: auto;
+         i::before, i::after {
+           content: '19';
+         }
+       }
+       &.marker9 {
+         right: 1585px;
+         left: auto;
+         i::before, i::after {
+           content: '21';
+         }
+       }
+     }
+ 
+ 
+     // --------------------
+     // FRETS
+     .fret {
+       height: 210px;
+       display: inline-block;
+       width: 5px;
+       padding-right: 90px;
+       padding-left: 0;
+       padding-top: 0;
+       margin-top: 1px; // Fix slight overhang
+       margin-left: 0;
+       float: right;
+       background: url(@/assets/img/hori-fret.png) no-repeat left bottom;
+       & + .fret {
+         padding-right: 93px;
+         padding-left: 0;
+         padding-top: 0;
+       }
+       &.fret5, &.fret6, &.fret7 {
+         padding-right: 83px;
+         padding-left: 0;
+       }
+       &.fret8, &.fret9  {
+         padding-right: 74px;
+         padding-left: 0;
+       }
+       &.fret10, &.fret11, &.fret12  {
+         padding-right: 72px;
+         padding-left: 0;
+       }
+       &.fret13, &.fret14, &.fret15, &.fret16, &.fret17  {
+         padding-right: 63px;
+         padding-left: 0;
+       }
+       &.fret18, &.fret19, &.fret20, &.fret21, &.fret22  {
+         padding-right: 58px;
+         padding-left: 0;
+       }
+     }
+   }
+
+@mixin open-note-styles {
+  background: $white;
+  color: $white;
+}
+
+
+@mixin root-note-styles {
+  // #gradient @include radial(lighten($orange, 10%), $orange);
+  color: $white;
+  border-color: $white;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.5);
+}
+
+// / NECK BITS FOR GUITAR (HORIZTONAL STANDARD)
+@mixin HORIZONTALNECKSTUFF { 
+  // --------------------
+     // STRINGS
+     .string {
+       position: absolute;
+       left: 0!important;
+       margin-left: 0!important;
+       width: $neckLength!important;
+       @include box-shadow(0 0 2px rgba(0,0,0,0.3));
+       z-index: 3;
+       // INDIVIDUAL
+       &.string-lowe {
+         height: 7px;
+         background: url(@/assets/img/hori-lowe.png) repeat-x;
+         bottom: 15px;
+         top: auto;
+       }
+       &.string-a {
+         height: 6px;
+         background: url(@/assets/img/hori-a.png) repeat-x;
+         bottom: 49px;
+         top: auto;
+       }
+       &.string-d {
+         height: 5px;
+         background: url(@/assets/img/hori-d.png) repeat-x;
+         bottom: 83px;
+         top: auto;
+       }
+       &.string-g {
+         height: 5px;
+         background: url(@/assets/img/hori-g.png) repeat-x;
+         bottom: 119px;
+         top: auto;
+       }
+       &.string-b {
+         height: 4px;
+         background: url(@/assets/img/hori-b.png) repeat-x;
+         bottom: 154px;
+         top: auto;
+       }
+       &.string-highe {
+         height: 3px;
+         background: url(@/assets/img/hori-highe.png) repeat-x;
+         bottom: 188px;
+         top: auto;
+       }
+     }
+ 
+     // --------------------
+     // STRING NOTES
+     .note {
+       @include note-styles; // MIXINS       
+       margin-left: -50px;
+       margin-top: -12px;      
+       display: block;
+       float: left;      
+       
+       // OPEN NOTE
+       &.pos0 {        
+         @include open-note-styles; // MIXINS
+       }
+       // ROOT NOTE
+       &.root, &.root.pos0 {
+         @include root-note-styles; // MIXINS
+       }
+ 
+       // SPACE OUT THE NOTES
+       & + .note {
+         margin-left: 33px;
+         margin-top: -12px;
+       }
+       &.pos1 {
+         margin-left: 33px;
+       }
+       &.pos2, &.pos3 {
+         margin-left: 67px;
+       }
+       &.pos4 {
+         margin-left: 69px;
+       }
+       &.pos5 {
+         margin-left: 64px;
+       }
+       &.pos6, &.pos7 {
+         margin-left: 59px;
+       }
+       &.pos8 {
+         margin-left: 54px;
+       }
+       &.pos9, &.pos10, &.pos11  {
+         margin-left: 49px;
+       }
+       &.pos12 {
+       margin-left: 49px;
+       }
+       &.pos13 {
+         margin-left: 43px;
+       }
+       &.pos14 {
+         margin-left: 39px;
+       }
+       &.pos15, &.pos16, &.pos17  {
+         margin-left: 39px;
+       }
+       &.pos18  {
+         margin-left: 37px;
+       }
+       &.pos19 {
+         margin-left: 32px;
+       }
+       &.pos20, &.pos21  {
+         margin-left: 35px;
+       }
+       &.pos22  {
+         margin-left: 34px;
+       }
+     }
+     
+     // --------------------
+     // MARKERS
+     .marker {
+       @include marker-styles; // MIXINS
+       position: absolute;
+       bottom: 50%;
+       margin-bottom: -15px;
+       top: 50%!important;
+       margin-top: -15px!important;
+       margin-left: 0;
+       
+       // BEFORE & AFTER MARKER
+       &::before, &::after {
+         position: absolute;
+         left: 0;
+         right: 0;
+       }
+       &::before {
+         top: -135px;
+         @include rotate(45deg);
+         @include border-radius(100% 100% 0 100%);
+       }
+       &::after {
+         bottom: -135px;
+         @include rotate(45deg);
+         @include border-radius(0 100% 100% 100%);
+       }
+       // BEFORE & AFTER MARKER 'I'
+       i {        
+         position: absolute;
+         &::before, &::after {
+           position: absolute;
+           left: 0;
+           right: 0;
+         }
+         &::before {
+           top: -135px;
+         }
+         &::after {
+           bottom: -135px;
+         }
+       }
+ 
+       // INDIVIDUAL
+       &.marker1 {
+         left: 206px;
+         i::before, i::after {
+           content: '3';
+         }
+       }
+       &.marker2 {
+         left: 382px;
+         i::before, i::after {
+           content: '5';
+         }
+       }
+       &.marker3 {
+         left: 545px;
+         i::before, i::after {
+           content: '7';
+         }
+       }
+       &.marker4 {
+         left: 686px;
+         i::before, i::after {
+           content: '9';
+         }
+       }
+       &.marker5 {
+         left: 897px;
+         top: 33%!important;;
+         &:before {
+           top: -100px;
+           left: 0;
+           right: 0;
+         }
+         &::after {
+           bottom: none;
+         }
+         i::before {
+           content: '12';
+           top: -98px;
+           left: 0;
+           right: 0;
+         }
+       }
+       &.marker5b {
+         left: 897px;
+         bottom: 33%!important;
+         top: auto!important;
+         &:after {
+           bottom: -100px;
+           left: 0;
+           right: 0;
+         }
+         &::before {
+           display: none;
+         }
+         i::after {
+           content: '12';
+           bottom: -98px;
+           left: 0;
+           right: 0;
+         }       
+       }
+       &.marker6 {
+         left: 1080px;
+         i::before, i::after {
+           content: '15';
+         }
+       }
+       &.marker7 {
+         left: 1200px;
+         i::before, i::after {
+           content: '17';
+         }
+       }
+       &.marker8 {
+         left: 1314px;
+         i::before, i::after {
+           content: '19';
+         }
+       }
+       &.marker9 {
+         left: 1422px;
+         i::before, i::after {
+           content: '21';
+         }
+       }
+     }
+ 
+ 
+     // --------------------
+     // FRETS
+     .fret {
+       height: 210px;
+       display: inline-block;
+       width: 5px;
+       padding-left: 90px;
+       padding-top: 1px;
+       margin-left: -1px; // Fix slight overhang
+       background: url(@/assets/img/hori-fret.png) no-repeat right bottom;
+       & + .fret {
+         padding-left: 90px;
+         padding-top: 0;
+       }
+       &.fret5 {
+         padding-left: 86px;
+       }
+       &.fret6 {
+         padding-left: 81px;
+       }
+       &.fret7 {
+         padding-left: 80px;
+       }
+       &.fret8, &.fret9, &.fret10, &.fret11, &.fret12  {
+         padding-left: 71px;
+       }
+       &.fret13, &.fret14, &.fret15, &.fret16  {
+         padding-left: 60px;
+       }
+       &.fret17  {
+         padding-left: 62px;
+       }
+       &.fret18, &.fret19, &.fret20, &.fret21  {
+         padding-left: 56px;
+       }
+       &.fret22  {
+         padding-left: 57px;
+       }
+     }
+   }
+
+@mixin marker-styles {
+    @include square(30px);
+    background: url(@/assets/img/marker.png) no-repeat;
+    &::before, &::after {
+      @include square(30px);
+      content: '';
+      background: rgba(255,255,255,0.10);
+    }
+    // BEFORE & AFTER MARKER 'I'
+    i {
+      @include square(30px);
+      line-height: 30px;
+      font-size: $baseFontSize + 2;
+      font-weight: 500;
+      font-family: $headingsFontFamily;
+      color: $yellow;
+      text-align: center;
+      font-style: normal;
+      &::before, &::after {
+        @include square(30px);
+      }
+    }
+  }
+  
+@mixin VERTICALNECKSTUFF-LEFTY { 
+  // --------------------
+    // STRINGS
+    .string {
+      position: absolute;
+      top: 0;
+      height: $neckLength;
+      @include box-shadow(0 0 2px rgba(0,0,0,0.3));
+      z-index: 3;
+      // INDIVIDUAL
+      &.string-lowe {
+        width: 7px;
+        background: url(@/assets/img/vert-lowe-lefty.png) repeat-y;
+        right: 17px;
+        left: auto;
+      }
+      &.string-a {
+        width: 6px;
+        background: url(@/assets/img/vert-a-lefty.png) repeat-y;
+        right: 51px;
+        left: auto;
+      }
+      &.string-d {
+        width: 5px;
+        background: url(@/assets/img/vert-d-lefty.png) repeat-y;
+        right: 85px;
+        left: auto;
+      }
+      &.string-g {
+        width: 5px;
+        background: url(@/assets/img/vert-g-lefty.png) repeat-y;
+        right: 121px;
+        left: auto;
+      }
+      &.string-b {
+        width: 4px;
+        background: url(@/assets/img/vert-b-lefty.png) repeat-y;
+        right: 156px;
+        left: auto;
+      }
+      &.string-highe {
+        width: 3px;
+        background: url(@/assets/img/vert-highe-lefty.png) repeat-y;
+        right: 190px;
+        left: auto;
+      }
+    }
+
+    // --------------------
+    // STRING NOTES
+    .note {
+      @include note-styles; // MIXINS  
+      margin-top: -50px;
+      margin-left: -12px;        
+      display: block;
+      // OPEN NOTE
+      &.pos0 {
+        @include open-note-styles; // MIXINS
+      }
+      // ROOT NOTE
+      &.root, &.root.pos0 {
+        @include root-note-styles; // MIXINS
+      }
+      // SPACE OUT THE NOTES
+      & + .note {
+        margin-top: 60px;
+      }
+      &.pos1 {
+        margin-top: 51px;
+      }
+      &.pos2, &.pos3 {
+        margin-top: 65px;
+      }
+      &.pos4 {
+        margin-top: 69px;
+      }
+      &.pos5 {
+        margin-top: 59px;
+      }
+      &.pos6 {
+        margin-top: 58px;
+      }
+      &.pos7 {
+        margin-top: 55px;
+      }
+      &.pos8 {
+        margin-top: 50px;
+      }
+      &.pos9, &.pos10, &.pos11  {
+        margin-top: 47px;
+      }
+      &.pos12 {
+      margin-top: 45px;
+      }
+      &.pos13 {
+        margin-top: 40px;
+      }
+      &.pos14 {
+        margin-top: 38px;
+      }
+      &.pos15, &.pos16, &.pos17  {
+        margin-top: 35px;
+      }
+      &.pos18, &.pos19, &.pos20, &.pos21  {
+        margin-top: 32px;
+      }
+      &.pos22  {
+        margin-top: 30px;
+      }
+    }
+  }
+    
+
+
+// GUITAR VERTICAL (STANDARD)
+// -----------------------------
+
+@mixin GUITARVERTICAL {
+
+  .guitar-outer {
+      height: $neckLength + 130px; //  neck + head
+  }
+
+  .guitar-head {
+    height: 130px;
+    top: 0;
+    background: url(@/assets/img/vert-head-mobile.png) no-repeat center center;
+
+  }
+
+  .guitar-neck {
+    width: 210px;
+    height: $neckLength;
+    background: url(@/assets/img/vert-neck.png) repeat-y;
+    position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -104px;
+    z-index: 1;
+    // INSERT NECK BITS
+    @include VERTICALNECKSTUFF;
+  }
+
+  .guitar-body {
+    position: absolute;
+    height: 269px;
+    bottom: 0;
+    background: url(@/assets/img/vert-body.png) no-repeat center bottom;
+  }
+}
+// END OF GUITAR VERTICAL (STANDARD)
+
+
+// GUITAR VERTICAL (LEFTY)
+// -----------------------------
+
+@mixin GUITARVERTICAL-LEFTY {
+
+  .guitar-outer {
+      height: $neckLength + 130px; //  neck + head
+  }
+
+  .guitar-head {
+    height: 130px;
+    top: 0;
+    background: url(@/assets/img/vert-head-mobile-lefty.png) no-repeat center center;
+
+  }
+
+  .guitar-neck {
+    width: 210px;
+    height: $neckLength;
+    background: url(@/assets/img/vert-neck.png) repeat-y;
+    position: relative;
+    top: 0;
+    left: 50%;
+    margin-left: -104px;
+    z-index: 1;
+    // INSERT NECK BITS
+    @include VERTICALNECKSTUFF-LEFTY;
+  }
+
+  .guitar-body {
+    position: absolute;
+    height: 269px;
+    bottom: 0;
+    background: url(@/assets/img/vert-body.png) no-repeat center bottom;
+  }
+}
+// END OF GUITAR VERTICAL (LEFTY)
+
+
+
+// GUITAR HORIZONTAL (STANDARD)
+// -----------------------------
+
+@mixin GUITARHORIZONTAL {
+
+  .guitar-outer {
+    position: absolute;
+    right: 0; // Keep the guitar aligned to the right
+    left: 0; // Keep the guitar head from falling off the screen
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
+    width: $outerLength; //  neck + head
+    background: none;
+
+  }  
+
+  .guitar-body {
+    position: absolute;
+    width: 269px;
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
+    right: 0;
+    background: url(@/assets/img/hori-body.png) no-repeat right center;
+  }
+
+  .guitar-head {
+    width: $headLength;
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
+    margin-left: 0;
+    position: absolute;
+    left: 0;
+    background: url("@/assets/img/hori-head.png") no-repeat left center;
+
+  }
+
+  .guitar-neck {
+    height: 210px;
+    width: $neckLength;
+    background: url(@/assets/img/hori-neck.png) repeat-x;
+    position: absolute;
+    left: 731px;
+    top: 50%;
+    margin-top: -105px;
+    margin-left: 0;
+    z-index: 1;    
+    // INSERT NECK BITS
+    @include HORIZONTALNECKSTUFF;
+  }    
+}
+  // END OF GUITAR HORIZONTAL (STANDARD)
+
+
+// GUITAR HORIZONTAL (LEFTY)
+// -----------------------------
+
+@mixin GUITARHORIZONTAL-LEFTY {
+
+  .guitar-outer {
+    position: absolute;
+    right: 0; // Keep the guitar aligned to the right
+    left: 0; // Keep the guitar head from falling off the screen
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
+    width: $outerLength; //  neck + head
+    background: none;
+  }  
+
+  .guitar-body {
+    position: absolute;
+    width: 269px;
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
+    left: 0;
+    right: auto;
+    background: url(@/assets/img/hori-body.png) no-repeat left center;
+  }
+
+  .guitar-head {
+    width: $headLength;
+    min-height: 100%;
+    height: auto!important;
+    height: 100%;
+    margin-left: 0;
+    position: absolute;
+    right: 0;
+    left: auto;
+    background: url(@/assets/img/hori-head.png) no-repeat right center;
+
+  }
+
+  .guitar-neck {
+    height: 210px;
+    width: $neckLength;
+    background: url(@/assets/img/hori-neck.png) repeat-x;
+    position: absolute;
+    right: 731px;
+    left: auto;
+    top: 50%;
+    margin-top: -106px;
+    margin-right: 0;
+    margin-left: 0;
+    z-index: 1;    
+    // INSERT NECK BITS
+    @include HORIZONTALNECKSTUFF-LEFTY;
+  }    
+}
+  // END OF GUITAR HORIZONTAL (LEFTY)
+
+
+
+
+
+    // / NECK BITS FOR GUITAR (HORIZTONAL STANDARD)
+
+
+
+
+
+// / NECK BITS FOR GUITAR (HORIZTONAL LEFTY)
+
+    // / NECK BITS FOR GUITAR (HORIZTONAL LEFTY)
+
+
+
+
+
+  
+      // --------------------
+      // STRING NOTES
+      .note {
+       @include note-styles; // MIXINS  
+        margin-top: -50px;
+        margin-left: -12px;
+        display: block;
+        // OPEN NOTE
+        &.pos0 {
+          @include open-note-styles; // MIXINS
+        }
+        // ROOT NOTE
+        &.root, &.root.pos0 {
+          @include root-note-styles; // MIXINS
+        }
+        // SPACE OUT THE NOTES
+        & + .note {
+          margin-top: 60px;
+        }
+        &.pos1 {
+          margin-top: 51px;
+        }
+        &.pos2, &.pos3 {
+          margin-top: 65px;
+        }
+        &.pos4 {
+          margin-top: 69px;
+        }
+        &.pos5 {
+          margin-top: 59px;
+        }
+        &.pos6 {
+          margin-top: 58px;
+        }
+        &.pos7 {
+          margin-top: 55px;
+        }
+        &.pos8 {
+          margin-top: 50px;
+        }
+        &.pos9, &.pos10, &.pos11  {
+          margin-top: 47px;
+        }
+        &.pos12 {
+        margin-top: 45px;
+        }
+        &.pos13 {
+          margin-top: 40px;
+        }
+        &.pos14 {
+          margin-top: 38px;
+        }
+        &.pos15, &.pos16, &.pos17  {
+          margin-top: 35px;
+        }
+        &.pos18, &.pos19, &.pos20, &.pos21  {
+          margin-top: 32px;
+        }
+        &.pos22  {
+          margin-top: 30px;
+        }
+      }
+      
+      // --------------------
+      // MARKERS
+      .marker {
+        @include marker-styles; // MIXINS
+        position: absolute;
+        left: 50%;
+        margin-left: -15px;
+        // BEFORE & AFTER MARKER
+        &::before, &::after {          
+          position: absolute;
+        }
+        &::before {
+          left: -135px;
+          @include rotate(45deg);
+          @include border-radius(100% 0 100% 100%);
+        }
+        &::after {
+          right: -135px;
+          @include rotate(-45deg);
+          @include border-radius(0 100% 100% 100%);
+        }
+        // BEFORE & AFTER MARKER 'I'
+        i {
+          position: absolute;
+          &::before, &::after {
+            position: absolute;
+          }
+          &::before {
+            left: -135px;
+          }
+          &::after {
+            right: -135px;
+          }
+        }
+
+        // INDIVIDUAL
+        &.marker1 {
+          top: 206px;
+          i::before, i::after {
+            content: '3';
+          }
+        }
+        &.marker2 {
+          top: 404px;
+          i::before, i::after {
+            content: '5';
+          }
+        }
+        &.marker3 {
+          top: 574px;
+          i::before, i::after {
+            content: '7';
+          }
+        }
+        &.marker4 {
+          top: 729px;
+          i::before, i::after {
+            content: '9';
+          }
+        }
+        &.marker5 {
+          top: 954px;
+          left: 33%;
+          &:before {
+            left: -100px;
+          }
+          &::after {
+            display: none;
+          }
+          i::before {
+            content: '12';
+            left: -98px;
+          }
+        }
+        &.marker5b {
+          top: 954px;
+          left: 66%;
+          &:after {
+            right: -100px;
+          }
+          &::before {
+            display: none;
+          }
+          i::after {
+            content: '12';
+            right: -98px;
+          }       
+        }
+        &.marker6 {
+          top: 1153px;
+          i::before, i::after {
+            content: '15';
+          }
+        }
+        &.marker7 {
+          top: 1286px;
+          i::before, i::after {
+            content: '17';
+          }
+        }
+        &.marker8 {
+          top: 1407px;
+          i::before, i::after {
+            content: '19';
+          }
+        }
+        &.marker9 {
+          top: 1526px;
+          i::before, i::after {
+            content: '21';
+          }
+        }
+      }
+
+
+      // --------------------
+      // FRETS
+      .fret {
+        width: 210px;
+        display: block;
+        height: 5px;
+        padding-top: 90px;
+        margin-left: -1px; // Fix slight overhang
+        background: url(@/assets/img/vert-fret.png) no-repeat center bottom;
+        & + .fret {
+          padding-top: 90px;
+        }
+        &.fret5, &.fret6, &.fret7 {
+          padding-top: 80px;
+        }
+        &.fret8, &.fret9, &.fret10, &.fret11, &.fret12  {
+          padding-top: 70px;
+        }
+        &.fret13, &.fret14, &.fret15, &.fret16, &.fret17  {
+          padding-top: 60px;
+        }
+        &.fret18, &.fret19, &.fret20, &.fret21, &.fret22  {
+          padding-top: 55px;
+        }
+      }
+  
+
+
+
+
+  // NECK BITS FOR GUITAR (VERTICAL)
+
+  
+      
+  
