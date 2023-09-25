@@ -367,9 +367,9 @@
   left: 188px;
 }
 .GUITARVERTICAL .guitar-neck .note {
-  width: 22px;
+  width: 21px;
   height: 22px;
-  line-height: 26px;
+  line-height: 18px;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
@@ -748,9 +748,9 @@
   left: auto;
 }
 .GUITARVERTICAL-LEFTY .guitar-neck .note {
-  width: 22px;
+  width: 21px;
   height: 22px;
-  line-height: 26px;
+  line-height: 18px;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
@@ -961,9 +961,9 @@
   top: auto;
 }
 .GUITARHORIZONTAL .guitar-neck .note {
-  width: 22px;
+  width: 21px;
   height: 22px;
-  line-height: 26px;
+  line-height: 18px;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;
@@ -991,7 +991,7 @@
   -o-transition: 0.3s;
   transition: 0.3s;
   margin-left: -50px;
-  margin-top: -12px;
+  margin-top: -10px;
   display: block;
   float: left;
 }
@@ -1030,7 +1030,7 @@
 }
 .GUITARHORIZONTAL .guitar-neck .note + .note {
   margin-left: 33px;
-  margin-top: -12px;
+  margin-top: -10px;
 }
 .GUITARHORIZONTAL .guitar-neck .note.pos1 {
   margin-left: 33px;
@@ -1393,7 +1393,7 @@
   top: auto;
 }
 .GUITARHORIZONTAL-LEFTY .guitar-neck .note {
-  width: 22px;
+  width: 21px;
   height: 22px;
   line-height: 26px;
   -webkit-border-radius: 100%;
@@ -1424,7 +1424,7 @@
   transition: 0.3s;
   margin-right: 50px;
   margin-left: 0;
-  margin-top: -12px;
+  margin-top: -10px;
   display: block;
   float: right;
 }
@@ -1466,7 +1466,7 @@
 .GUITARHORIZONTAL-LEFTY .guitar-neck .note + .note {
   margin-right: 33px;
   margin-left: 0;
-  margin-top: -12px;
+  margin-top: -10px;
 }
 .GUITARHORIZONTAL-LEFTY .guitar-neck .note.pos1 {
   margin-right: 33px;
@@ -1812,7 +1812,7 @@
   top: auto;
 }
 .HORIZONTALNECKSTUFF .note {
-  width: 22px;
+  width: 21px;
   height: 22px;
   line-height: 26px;
   -webkit-border-radius: 100%;
@@ -1842,7 +1842,7 @@
   -o-transition: 0.3s;
   transition: 0.3s;
   margin-left: -50px;
-  margin-top: -12px;
+  margin-top: -10px;
   display: block;
   float: left;
 }
@@ -1881,7 +1881,7 @@
 }
 .HORIZONTALNECKSTUFF .note + .note {
   margin-left: 33px;
-  margin-top: -12px;
+  margin-top: -10px;
 }
 .HORIZONTALNECKSTUFF .note.pos1 {
   margin-left: 33px;
@@ -2199,7 +2199,7 @@
   top: auto;
 }
 .HORIZONTALNECKSTUFF-LEFTY .note {
-  width: 22px;
+  width: 21px;
   height: 22px;
   line-height: 26px;
   -webkit-border-radius: 100%;
@@ -2230,7 +2230,7 @@
   transition: 0.3s;
   margin-right: 50px;
   margin-left: 0;
-  margin-top: -12px;
+  margin-top: -10px;
   display: block;
   float: right;
 }
@@ -2272,7 +2272,7 @@
 .HORIZONTALNECKSTUFF-LEFTY .note + .note {
   margin-right: 33px;
   margin-left: 0;
-  margin-top: -12px;
+  margin-top: -10px;
 }
 .HORIZONTALNECKSTUFF-LEFTY .note.pos1 {
   margin-right: 33px;
@@ -2611,7 +2611,7 @@
   left: 188px;
 }
 .VERTICALNECKSTUFF .note {
-  width: 22px;
+  width: 21px;
   height: 22px;
   line-height: 26px;
   -webkit-border-radius: 100%;
@@ -2967,7 +2967,7 @@
   left: auto;
 }
 .VERTICALNECKSTUFF-LEFTY .note {
-  width: 22px;
+  width: 21px;
   height: 22px;
   line-height: 26px;
   -webkit-border-radius: 100%;
