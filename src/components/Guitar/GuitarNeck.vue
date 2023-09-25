@@ -104,7 +104,7 @@ const checkUserNote = (
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped >
 @import '@/assets/css/guitar.css';
 @import '@/assets/css/guitar.responsive.css';
 .note {
