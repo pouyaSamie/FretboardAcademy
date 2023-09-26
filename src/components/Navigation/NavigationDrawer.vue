@@ -1,26 +1,29 @@
 <template>
   <v-navigation-drawer temporary scrim v-model="drawer">
     <v-sheet elevation="10" class="py-4 px-1">
+      
       <v-row dense>
         <v-col cols="12">
-          <Notes />
+          <Notes v-model="selectedNotes" />
         </v-col>
+       
         <v-col cols="12">
-          <Strings />
+          <Strings v-model="selectedStrings" />
         </v-col>
       </v-row>
-      <v-divider inset></v-divider>
-      <v-card>
-      <v-row>
-        <v-col cols="11" class="my-10">
 
+      <v-divider inset></v-divider>
+
+      <v-card>
+        <v-row>
+          <v-col cols="11" class="my-10">
             <v-slider v-model="frets" :max="24" :step="1" label="Frets" thumb-label="always">
             </v-slider>
-
-        </v-col>
-      </v-row>
-    </v-card>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-sheet>
+
   </v-navigation-drawer>
 </template>
 <script setup lang="ts">
@@ -33,6 +36,7 @@ const props = defineProps({
 });
 
 const { drawer } = toRefs(props);
-
+const selectedStrings = ref<string[]>(['high-E', 'B', 'G', 'D', 'A', 'low-E']);
+const selectedNotes = ref<string[]>(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
 let frets = ref<string>('12');
 </script>
