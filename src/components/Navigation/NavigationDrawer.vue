@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer temporary scrim v-model="drawer">
+  <v-navigation-drawer scrim v-model="drawer">
     <v-sheet elevation="10" class="py-4 px-1">
       
       <v-row dense>
@@ -23,7 +23,9 @@
         </v-row>
       </v-card>
     </v-sheet>
-
+{{ selectedNotes }}
+{{ selectedStrings }}
+{{ frets }}
   </v-navigation-drawer>
 </template>
 <script setup lang="ts">
