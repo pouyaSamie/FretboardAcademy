@@ -12,7 +12,7 @@
     "sass": "^1.68.0",
     "vue": "^3.2.0",
     "vuetify": "^3.0.0",
-    "vuex": "^4.0.2"
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@babel/types": "^7.21.4",
