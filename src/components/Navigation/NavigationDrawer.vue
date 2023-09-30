@@ -29,16 +29,28 @@
   </v-navigation-drawer>
 </template>
 <script setup lang="ts">
-import { toRefs, ref } from 'vue';
+import { toRefs, ref, onMounted } from 'vue';
+import { useStore } from 'vuex';
 import Notes from './Notes.vue'
 import Strings from './Strings.vue'
+
+const store = useStore();
 
 const props = defineProps({
   drawer: Boolean
 });
 
 const { drawer } = toRefs(props);
-const selectedStrings = ref<string[]>(['high-E', 'B', 'G', 'D', 'A', 'low-E']);
-const selectedNotes = ref<string[]>(['A', 'B', 'C', 'D', 'E', 'F', 'G']);
-let frets = ref<string>('12');
+const selectedStrings = ref(store.state.selectedStrings);
+const selectedNotes = ref(store.state.selectedNotes);
+const frets = ref(store.state.frets);
+
+onMounted(() => {
+  // Set initial values from store
+  drawer.value = store.state.drawer;
+  selectedStrings.value = store.state.selectedStrings;
+  selectedNotes.value = store.state.selectedNotes;
+  frets.value = store.state.frets;
+});
+
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="guitar-outer" ref="guitarOuter">
+  <div v-show="false" class="guitar-outer" ref="guitarOuter">
     <!-- HEAD -->
     <div class="guitar-head"></div>
 
@@ -38,9 +38,9 @@
     <!-- GUITAR BODY -->
     <div class="guitar-body"></div>
   </div>
-  <div v-if="selectedNote != null" ref="NoteToFind" class="note-to-find" :class="[matched != null && matched ? 'correct' : 'wrong' ]">
+  <!-- <div v-if="selectedNote != null" ref="NoteToFind" class="note-to-find" :class="[matched != null && matched ? 'correct' : 'wrong' ]">
     {{selectedNote.Name}}
-  </div>
+  </div> -->
 </template>
 
 <script setup lang="ts">
@@ -68,7 +68,6 @@ watch(
     }
     selectedNote.value = ChooseRandomNote(newState);
     state = newState;
-    console.log(selectedNote.value);
   },
   { deep: true },
 );

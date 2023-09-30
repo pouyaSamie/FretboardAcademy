@@ -4,11 +4,11 @@ import { createStore, ActionContext } from 'vuex';
 import { State } from './State.Types';
 
 const data = {
-  selectedNotes: [] as string[],
-  selectedStrings: [] as string[],
-  frets: 0,
+  selectedNotes: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+  selectedStrings: ['high-E', 'B', 'G', 'D', 'A', 'low-E'],
+  frets: 12,
   IsStarted: false,
-
+  drawer:false,
 } as State;
 
 // Define your mutations
@@ -19,7 +19,7 @@ const mutations = {
     state.selectedStrings = newSettings.selectedStrings;
   },
   UPDATE_STATUS: (state: State, status: boolean) => {
-    state.IsStarted = status;
+    state.IsStarted = !state.IsStarted;
   },
 };
 
