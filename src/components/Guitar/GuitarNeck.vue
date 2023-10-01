@@ -1,5 +1,5 @@
 <template>
-  <div v-if="false" class="guitar-outer" ref="guitarOuter">
+  <div  class="guitar-outer" ref="guitarOuter">
     <!-- HEAD -->
     <div class="guitar-head"></div>
 
@@ -40,9 +40,6 @@
   
   </div>
 
-  <!-- <div v-if="selectedNote != null" ref="NoteToFind" class="note-to-find" :class="[matched != null && matched ? 'correct' : 'wrong' ]">
-    {{selectedNote.Name}}
-  </div> -->
 </template>
 
 <script setup lang="ts">

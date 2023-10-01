@@ -17,6 +17,7 @@ export const mutations = {
 
   UPDATE_TARGET_NOTE:(state: IState,selectedNote: INoteItem) => {
     state.TargetNote =  selectedNote;
+    state.UserSelectedNote= null;
   },
 
 };

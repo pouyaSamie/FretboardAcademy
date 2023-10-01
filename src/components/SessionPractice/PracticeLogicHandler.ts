@@ -34,5 +34,7 @@ export const IsMatch = (fret: number, selectedString: IGuitarString, selectedNot
     // eslint-disable-next-line
     fret = targetNote.Fret;
   }
+
+  console.log("IsMatch:",targetNote.Fret === fret && targetNote.Name.toLowerCase() === selectedNote.toLowerCase() && targetNote.String.toLowerCase() === selectedString.id.toLowerCase())
   return (targetNote.Fret === fret && targetNote.Name.toLowerCase() === selectedNote.toLowerCase() && targetNote.String.toLowerCase() === selectedString.id.toLowerCase());
 };
