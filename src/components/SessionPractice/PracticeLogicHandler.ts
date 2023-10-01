@@ -1,40 +1,43 @@
-import { IGuitarString, INoteItem } from "@/Interfaces/GuitarNeckTypes";
-import { IState } from "@/Interfaces/IState";
+import {type GuitarString, type NoteItem} from '@/Interfaces/GuitarNeckTypes';
+import {type State} from '@/Interfaces/IState';
 
-export const selectRandomString = (stringArray:IGuitarString[]) => {
-  const randomIndex = Math.floor(Math.random() * stringArray.length);
-  return stringArray[randomIndex];
+export const selectRandomString = (stringArray: GuitarString[]) => {
+	const randomIndex = Math.floor(Math.random() * stringArray.length);
+	return stringArray[randomIndex];
 };
 
-export const GetUserSelectedStrings = (state: IState): IGuitarString[] => {
-  const userNotes = state.selectedNotes.map((note) => note.toLowerCase()); // Convert all user notes to lowercase
-  const userStrings = state.Tuning.filter((string) => state.selectedStrings.includes(string.id));
-  const noteInFrets = userStrings.map((string) => ({
-    ...string,
-    notes: string.notes
-      .slice(0, state.frets + 1)
-      .filter((note) => userNotes.includes(note.toLowerCase())), // Convert the note to lowercase for comparison
-  }));
-  return noteInFrets;
+export const getUserSelectedStrings = (state: State): GuitarString[] => {
+	const userNotes = state.selectedNotes.map(note => note.toLowerCase()); // Convert all user notes to lowercase
+	const userStrings = state.tuning.filter(string => state.selectedStrings.includes(string.id));
+	const noteInFrets = userStrings.map(string => ({
+		...string,
+		notes: string.notes
+			.slice(0, state.frets + 1)
+			.filter(note => userNotes.includes(note.toLowerCase())), // Convert the note to lowercase for comparison
+	}));
+	return noteInFrets;
 };
 
-export const ChooseRandomNote = (newState : IState) : INoteItem => {
-  const userSelectedStrings = GetUserSelectedStrings(newState);
-  const randomString = selectRandomString(userSelectedStrings);
-  const randomFretIndex = Math.floor(Math.random() * randomString.notes.length);
-  const fret = newState.Tuning.filter((string) => string.id === randomString.id)[0].notes.indexOf(randomString.notes[randomFretIndex]);
-  const result : INoteItem = { Name: randomString.notes[randomFretIndex].toUpperCase(), String: randomString.id, Fret: fret };
+export const chooseRandomNote = (newState: State): NoteItem => {
+	const userSelectedStrings = getUserSelectedStrings(newState);
+	const randomString = selectRandomString(userSelectedStrings);
+	const randomFretIndex = Math.floor(Math.random() * randomString.notes.length);
+	const fret = newState.tuning.filter(string => string.id === randomString.id)[0].notes.indexOf(randomString.notes[randomFretIndex]);
+	const result: NoteItem = {name: randomString.notes[randomFretIndex].toUpperCase(), string: randomString.id, fret};
 
-  return result;
+	return result;
 };
 
-export const IsMatch = (fret: number, selectedString: IGuitarString, selectedNote: string, targetNote: INoteItem | null) : boolean => {
-  if (targetNote == null) return false;
-  if (targetNote.Fret === 0 || targetNote.Fret === 12) {
-    // eslint-disable-next-line
-    fret = targetNote.Fret;
-  }
+export const isMatch = (fret: number, selectedString: GuitarString, selectedNote: string, targetNote: NoteItem | undefined): boolean => {
+	if (targetNote === undefined) {
+		return false;
+	}
 
-  console.log("IsMatch:",targetNote.Fret === fret && targetNote.Name.toLowerCase() === selectedNote.toLowerCase() && targetNote.String.toLowerCase() === selectedString.id.toLowerCase())
-  return (targetNote.Fret === fret && targetNote.Name.toLowerCase() === selectedNote.toLowerCase() && targetNote.String.toLowerCase() === selectedString.id.toLowerCase());
+	if (targetNote.fret === 0 || targetNote.fret === 12) {
+		// eslint-disable-next-line
+    fret = targetNote.fret;
+	}
+
+	console.log('IsMatch:', targetNote.fret === fret && targetNote.name.toLowerCase() === selectedNote.toLowerCase() && targetNote.string.toLowerCase() === selectedString.id.toLowerCase());
+	return (targetNote.fret === fret && targetNote.name.toLowerCase() === selectedNote.toLowerCase() && targetNote.string.toLowerCase() === selectedString.id.toLowerCase());
 };

@@ -44,27 +44,27 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex';
-import { IGuitarString, INoteItem, ISelectedNote } from '@/Interfaces/GuitarNeckTypes';
-import { IState } from '@/Interfaces/IState';
+import { GuitarString, NoteItem, SelectedNote } from '@/Interfaces/GuitarNeckTypes';
+import { State } from '@/Interfaces/IState';
 import { computed } from 'vue';
 
-const store = useStore<IState>();
-const Tuning : IGuitarString[] = store.state.Tuning;
+const store = useStore<State>();
+const Tuning : GuitarString[] = store.state.tuning;
 const targetNote =computed(() => { 
-  return store.state.TargetNote 
+  return store.state.targetNote 
 });
 
-const isSelected = (string: IGuitarString, TargetNote: INoteItem | null) => {
+const isSelected = (string: GuitarString, TargetNote: NoteItem | undefined) => {
   if (!TargetNote) {
     return false; // No selected note, so nothing is highlighted
   }
-  return string.id === TargetNote.String && string.notes[TargetNote.Fret] === TargetNote.Name.toLowerCase();
+  return string.id === TargetNote.string && string.notes[TargetNote.fret] === TargetNote.name.toLowerCase();
 };
 
 const OnUserSelectNote =(
   event: MouseEvent | KeyboardEvent,
   fret: number,
-  selectedString: IGuitarString,
+  selectedString: GuitarString,
   note: string
 ) =>{
   const target = event.currentTarget as HTMLElement;
@@ -73,7 +73,7 @@ const OnUserSelectNote =(
     target.classList.remove('on');
   }, 2000);
 
-  store.dispatch('updateUserChoice', {Fret:fret, String : selectedString, Note: note} as ISelectedNote);
+  store.dispatch('updateUserChoice', {Fret:fret, String : selectedString, Note: note} as SelectedNote);
 }
 
 

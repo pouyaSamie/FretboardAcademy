@@ -1,12 +1,12 @@
-import { IGuitarString, INoteItem, ISelectedNote } from "./GuitarNeckTypes";
+import {type GuitarString, type NoteItem, type SelectedNote} from './GuitarNeckTypes';
 
-export interface IState {
-  selectedNotes: string[];
-  selectedStrings: string[];
-  frets: number;
-  IsStarted : boolean
-  drawer : boolean,
-  Tuning : IGuitarString[],
-  UserSelectedNote : ISelectedNote | null,
-  TargetNote : INoteItem | null
-}
+export type State = {
+	selectedNotes: string[];
+	selectedStrings: string[];
+	frets: number;
+	isStarted: boolean;
+	drawer: boolean;
+	tuning: GuitarString[];
+	userSelectedNote: SelectedNote | undefined;
+	targetNote: NoteItem | undefined;
+};

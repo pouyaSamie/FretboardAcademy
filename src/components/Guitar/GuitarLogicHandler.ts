@@ -1,7 +1,5 @@
-// import { IState } from '@/Interfaces/IState';
+// Import { IState } from '@/Interfaces/IState';
 // import { IGuitarString, INoteItem } from '../../Interfaces/GuitarNeckTypes';
-
-
 
 // export const selectRandomString = (stringArray:IGuitarString[]) => {
 //   const randomIndex = Math.floor(Math.random() * stringArray.length);

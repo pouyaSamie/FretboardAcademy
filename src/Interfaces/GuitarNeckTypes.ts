@@ -1,17 +1,17 @@
-export interface IGuitarString {
-  id: string;
-  class: string;
-  notes: string[];
-}
+export type GuitarString = {
+	id: string;
+	class: string;
+	notes: string[];
+};
 
-export interface INoteItem {
-  Name:string,
-  String:string,
-  Fret:number,
-}
+export type NoteItem = {
+	name: string;
+	string: string;
+	fret: number;
+};
 
-export interface ISelectedNote {
-  Note:string,
-  String:IGuitarString,
-  Fret:number,
-}
+export type SelectedNote = {
+	Note: string;
+	String: GuitarString;
+	Fret: number;
+};

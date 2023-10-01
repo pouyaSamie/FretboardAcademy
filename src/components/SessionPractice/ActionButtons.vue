@@ -4,7 +4,7 @@
       <v-row>
         <v-col v-if="isStarted" cols="1" vcols="12">
           <v-avatar :icon="getAvatarIcon()" :color="avatarColor" size="56">{{
-            targetNote?.Name
+            targetNote?.name
           }}</v-avatar>
         </v-col>
         <v-spacer />
@@ -24,32 +24,32 @@
 import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 import {
-  ChooseRandomNote,
-  IsMatch,
+  chooseRandomNote,
+  isMatch,
 } from "./PracticeLogicHandler";
-import { IState } from "@/Interfaces/IState";
-import { INoteItem } from "@/Interfaces/GuitarNeckTypes";
+import { State } from "@/Interfaces/IState";
+import { NoteItem } from "@/Interfaces/GuitarNeckTypes";
 
-const store = useStore<IState>();
-let targetNote = ref<INoteItem | null>(null);
+const store = useStore<State>();
+let targetNote = ref<NoteItem | undefined>(undefined);
 let showCross = ref(false);
 let showCheck = ref(false);
 let avatarColor = ref("#ccc");
 const toggleStart = () => {
-  let shouldStart = !store.state.IsStarted;
+  let shouldStart = !store.state.isStarted;
   store.dispatch("updateStatus", shouldStart);
   if (shouldStart) SelectRandomNote(store.state);
 };
 
 const isStarted = computed(() => {
-  return store.state.IsStarted;
+  return store.state.isStarted;
 });
 
 watch(
-  () => store.state.UserSelectedNote,
+  () => store.state.userSelectedNote,
   (newUserSelectedNote) => {
   if (newUserSelectedNote) {
-    let matched = IsMatch(
+    let matched = isMatch(
       newUserSelectedNote.Fret,
       newUserSelectedNote.String,
       newUserSelectedNote.Note,
@@ -96,8 +96,8 @@ function getButtonColor() {
   return isStarted.value ? "red" : "green";
 }
 
-function SelectRandomNote(state: IState) {
-  targetNote.value = ChooseRandomNote(state);
+function SelectRandomNote(state: State) {
+  targetNote.value = chooseRandomNote(state);
   store.dispatch("updateTargetNote", targetNote.value);
 }
 </script>

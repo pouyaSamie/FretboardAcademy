@@ -1,8 +1,8 @@
-import { IState } from "../Interfaces/IState";
+import {type State} from '../Interfaces/IState';
 
 export const getters = {
-  selectedNotes: (currentState: IState) => currentState.selectedNotes,
-  selectedStrings: (currentState: IState) => currentState.selectedStrings,
-  frets: (currentState: IState) => currentState.frets,
-  IsStarted: (currentState: IState) => currentState.IsStarted,
+	selectedNotes: (currentState: State) => currentState.selectedNotes,
+	selectedStrings: (currentState: State) => currentState.selectedStrings,
+	frets: (currentState: State) => currentState.frets,
+	isStarted: (currentState: State) => currentState.isStarted,
 };

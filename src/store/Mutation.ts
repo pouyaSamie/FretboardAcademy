@@ -1,23 +1,23 @@
-import { INoteItem, ISelectedNote } from "@/Interfaces/GuitarNeckTypes";
-import { IState } from "../Interfaces/IState";
+import {type NoteItem, type SelectedNote} from '@/Interfaces/GuitarNeckTypes';
+import {type State} from '../Interfaces/IState';
 
 export const mutations = {
-  UPDATE_SETTINGS: (state: IState, newSettings: IState) => {
-    state.frets = newSettings.frets;
-    state.selectedNotes = newSettings.selectedNotes;
-    state.selectedStrings = newSettings.selectedStrings;
-  },
-  UPDATE_STATUS: (state: IState, status: boolean) => {
-    state.IsStarted = !state.IsStarted;
-  },
-  
-  UPDATE_USER_SELECTED_NOTE: (state: IState,selectedNote: ISelectedNote) => {
-    state.UserSelectedNote =  selectedNote;
-  },
+	updateSettings(state: State, newSettings: State) {
+		state.frets = newSettings.frets;
+		state.selectedNotes = newSettings.selectedNotes;
+		state.selectedStrings = newSettings.selectedStrings;
+	},
+	updateStatus(state: State, status: boolean) {
+		state.isStarted = !state.isStarted;
+	},
 
-  UPDATE_TARGET_NOTE:(state: IState,selectedNote: INoteItem) => {
-    state.TargetNote =  selectedNote;
-    state.UserSelectedNote= null;
-  },
+	updateUserChoice(state: State, selectedNote: SelectedNote) {
+		state.userSelectedNote = selectedNote;
+	},
+
+	updateTargetNote(state: State, selectedNote: NoteItem) {
+		state.targetNote = selectedNote;
+		state.userSelectedNote = undefined;
+	},
 
 };
