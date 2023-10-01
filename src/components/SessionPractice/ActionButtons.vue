@@ -3,11 +3,11 @@
     <div class="mr-10">
       <v-row>
         <v-col v-if="isStarted" cols="1" vcols="12">
-          <v-avatar color="green" size="56">{{ targetNote?.Name }}</v-avatar>
+          <v-avatar :color="geNoteColor()" size="56">{{ targetNote?.Name }}</v-avatar>
         </v-col>
         <v-spacer />
         <v-col cols="1">
-          <V-Btn :icon="getIcon()" size="large" @click="toggleStart" :color="getColor()" />
+          <V-Btn :icon="getIcon()" size="large" @click="toggleStart" :color="getButtonColor()" />
         </v-col>
 
 
@@ -44,6 +44,8 @@ const UserSelectedNote = computed(() => {
 const isMatch = computed(() => {
   if (UserSelectedNote && UserSelectedNote.value)
     return IsCorrectNoteSelected(UserSelectedNote.value)
+  
+  return null;
 });
 
 
@@ -51,14 +53,19 @@ function getIcon() {
   return isStarted.value ? "mdi-stop-circle" : "mdi-play-circle"
 }
 
-function getColor() {
+function getButtonColor() {
+  return isStarted.value ? "green" : "red"
+}
+
+function geNoteColor() {
+  if(isMatch == null)
+    return "gray";
+
   return isMatch ? "green" : "red"
 }
 
 function SelectRandomNote(state: IState) {
   targetNote.value = ChooseRandomNote(state);
-
-
   store.dispatch('updateTargetNote', targetNote.value);
 }
 
@@ -68,4 +75,5 @@ function IsCorrectNoteSelected(userSelectedNote: ISelectedNote) {
     SelectRandomNote(store.state);
   return matched;
 }
+
 </script>
