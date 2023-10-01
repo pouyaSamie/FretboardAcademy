@@ -3,17 +3,18 @@
     <div class="mr-10">
       <v-row>
         <v-col v-if="isStarted" cols="1" vcols="12">
-          <v-avatar :color="geNoteColor()" size="56">{{ targetNote?.Name }}</v-avatar>
+          <v-avatar :color="getNoteColor" size="56">{{ targetNote?.Name }}</v-avatar>
         </v-col>
         <v-spacer />
         <v-col cols="1">
-          <V-Btn :icon="getIcon()" size="large" @click="toggleStart" :color="getButtonColor()" />
+          <V-Btn :icon="getButtonIcon()" size="large" @click="toggleStart" :color="getButtonColor()" />
         </v-col>
 
 
       </v-row>
     </div>
     {{ isMatch }}
+
   </VLayoutItem>
 </template>
 <script setup lang="ts">
@@ -22,7 +23,7 @@ import { useStore } from 'vuex';
 import { ChooseRandomNote, IsMatch } from './PracticeLogicHandler';
 import { IState } from '@/Interfaces/IState';
 import { INoteItem, ISelectedNote } from '@/Interfaces/GuitarNeckTypes';
-import { match } from 'assert';
+
 
 const store = useStore<IState>();
 let targetNote = ref<INoteItem | null>(null);
@@ -44,25 +45,24 @@ const UserSelectedNote = computed(() => {
 const isMatch = computed(() => {
   if (UserSelectedNote && UserSelectedNote.value)
     return IsCorrectNoteSelected(UserSelectedNote.value)
-  
   return null;
 });
 
 
-function getIcon() {
+function getButtonIcon() {
   return isStarted.value ? "mdi-stop-circle" : "mdi-play-circle"
 }
 
 function getButtonColor() {
-  return isStarted.value ? "green" : "red"
+  return isStarted.value ?  "red" : "green"
 }
 
-function geNoteColor() {
-  if(isMatch == null)
-    return "gray";
-
-  return isMatch ? "green" : "red"
-}
+const getNoteColor = computed(() => {
+  if(isMatch.value == null)
+    return "#ccc";
+  console.log(isMatch.value)
+  return isMatch.value ? "green" : "red"
+})
 
 function SelectRandomNote(state: IState) {
   targetNote.value = ChooseRandomNote(state);

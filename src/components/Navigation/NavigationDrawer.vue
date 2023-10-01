@@ -47,7 +47,7 @@ const frets = ref(store.state.frets);
 
 onMounted(() => {
   // Set initial values from store
-  drawer.value = store.state.drawer;
+  // drawer.value = store.state.drawer;
   selectedStrings.value = store.state.selectedStrings;
   selectedNotes.value = store.state.selectedNotes;
   frets.value = store.state.frets;

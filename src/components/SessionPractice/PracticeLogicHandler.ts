@@ -20,7 +20,6 @@ export const GetUserSelectedStrings = (state: IState): IGuitarString[] => {
 
 export const ChooseRandomNote = (newState : IState) : INoteItem => {
   const userSelectedStrings = GetUserSelectedStrings(newState);
-  console.log(userSelectedStrings)
   const randomString = selectRandomString(userSelectedStrings);
   const randomFretIndex = Math.floor(Math.random() * randomString.notes.length);
   const fret = newState.Tuning.filter((string) => string.id === randomString.id)[0].notes.indexOf(randomString.notes[randomFretIndex]);
