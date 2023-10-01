@@ -21,7 +21,7 @@
 import { ref } from "vue";
 import GuitarNeck from "./components/Guitar/GuitarNeck.vue";
 import NavigationDrawer from "./components/Navigation/NavigationDrawer.vue";
-import ActionButtons from "./components/ActionButtons.vue";
+import ActionButtons from "./components/SessionPractice/ActionButtons.vue";
 const drawer = ref(false);
 </script>
 <style>

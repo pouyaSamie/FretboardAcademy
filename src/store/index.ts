@@ -1,49 +1,11 @@
-// store.ts
+import { createStore } from 'vuex';
+import {State} from './State'
+import {mutations} from './Mutation'
+import {actions} from './Actions'
+import {getters} from './Getters'
 
-import { createStore, ActionContext } from 'vuex';
-import { State } from './State.Types';
-
-const data = {
-  selectedNotes: ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
-  selectedStrings: ['high-E', 'B', 'G', 'D', 'A', 'low-E'],
-  frets: 12,
-  IsStarted: false,
-  drawer:false,
-} as State;
-
-// Define your mutations
-const mutations = {
-  UPDATE_SETTINGS: (state: State, newSettings: State) => {
-    state.frets = newSettings.frets;
-    state.selectedNotes = newSettings.selectedNotes;
-    state.selectedStrings = newSettings.selectedStrings;
-  },
-  UPDATE_STATUS: (state: State, status: boolean) => {
-    state.IsStarted = !state.IsStarted;
-  },
-};
-
-// Define your actions
-const actions = {
-  updateSettings(context: ActionContext<State, State>, newSettings: State) {
-    context.commit('UPDATE_SETTINGS', newSettings);
-  },
-  updateStatus(context: ActionContext<State, State>, status: boolean) {
-    context.commit('UPDATE_STATUS', status);
-  },
-};
-
-// Define your getters
-const getters = {
-  selectedNotes: (currentState: State) => currentState.selectedNotes,
-  selectedStrings: (currentState: State) => currentState.selectedStrings,
-  frets: (currentState: State) => currentState.frets,
-  IsStarted: (currentState: State) => currentState.IsStarted,
-};
-
-// Create and export the Vuex store instance
 export default createStore({
-  state: () => ({ ...data }), // Ensure that you return a copy of the data to avoid direct mutation
+  state: () => ({ ...State }),
   mutations,
   actions,
   getters,

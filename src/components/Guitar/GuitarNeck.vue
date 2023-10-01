@@ -1,5 +1,5 @@
 <template>
-  <div v-show="false" class="guitar-outer" ref="guitarOuter">
+  <div  class="guitar-outer" ref="guitarOuter">
     <!-- HEAD -->
     <div class="guitar-head"></div>
 
@@ -24,12 +24,12 @@
         <span class="marker9 marker"><i></i></span>
 
         <!-- STRINGS -->
-        <span v-for="string in strings" :key="string.id" class="string" :class="[ string.class,{ 'highlighted': isSelected(string,selectedNote) }]">
+        <span v-for="string in Tuning" :key="string.id" class="string" :class="[ string.class,{ 'highlighted': isSelected(string,targetNote) }]">
 
           <!-- NOTES -->
           <span v-for="(note, index) in string.notes" :key="index" :class="['note', 'note-' + note, 'pos' + index, ]"
-          @click="checkUserNote($event, index, string, note, selectedNote)"
-          @keydown.enter="checkUserNote($event, index, string, note, selectedNote)"> {{ note }} </span>
+          @click="OnUserSelectNote($event, index, string, note)"
+          @keydown.enter="OnUserSelectNote($event, index, string, note)"> {{ note }} </span>
 
           </span>
       </div>
@@ -44,61 +44,39 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
 import { useStore } from 'vuex';
-import { State } from '@/store/State.Types';
-import { GuitarString, NoteItem } from '@/Interfaces/GuitarNeckTypes';
-import {
-  strings,
-  IsMatch,
-  ChooseRandomNote,
-} from './GuitarLogicHandler';
+import { IGuitarString, INoteItem, ISelectedNote } from '@/Interfaces/GuitarNeckTypes';
+import { IState } from '@/Interfaces/IState';
+import { computed } from 'vue';
 
-const store = useStore<State>();
-// eslint-disable-next-line
-let selectedNote = ref<NoteItem | null>(null);
-const matched = ref<boolean | null>(null);
-let state : State;
-watch(
-  () => store.state, // Watch the entire state object
-  (newState) => {
-    if (!store.getters.IsStarted) {
-      selectedNote.value = null;
-      return;
-    }
-    selectedNote.value = ChooseRandomNote(newState);
-    state = newState;
-  },
-  { deep: true },
-);
-const isSelected = (string: GuitarString, selectedString: NoteItem | null) => {
-  if (!selectedString) {
+const store = useStore<IState>();
+const Tuning : IGuitarString[] = store.state.Tuning;
+const targetNote =computed(() => { 
+  return store.state.TargetNote 
+});
+
+const isSelected = (string: IGuitarString, TargetNote: INoteItem | null) => {
+  if (!TargetNote) {
     return false; // No selected note, so nothing is highlighted
   }
-  return string.id === selectedString.String && string.notes[selectedString.Fret] === selectedString.Name.toLowerCase();
+  return string.id === TargetNote.String && string.notes[TargetNote.Fret] === TargetNote.Name.toLowerCase();
 };
 
-const checkUserNote = (
+const OnUserSelectNote =(
   event: MouseEvent | KeyboardEvent,
   fret: number,
-  selectedString: GuitarString,
-  clickedNote: string,
-  targetNote: NoteItem | null,
-) => {
+  selectedString: IGuitarString,
+  note: string
+) =>{
   const target = event.currentTarget as HTMLElement;
-  target.classList.remove('correct');
-  target.classList.remove('wrong');
   if (target) target.classList.add('on');
   setTimeout(() => {
     target.classList.remove('on');
   }, 2000);
 
-  matched.value = IsMatch(fret, selectedString, clickedNote, targetNote);
-  if (matched.value) {
-    target.classList.add('correct');
-    selectedNote.value = ChooseRandomNote(state);
-  } else target.classList.add('wrong');
-};
+  store.dispatch('updateUserChoice', {Fret:fret, String : selectedString, Note: note} as ISelectedNote);
+}
+
 
 </script>
 
