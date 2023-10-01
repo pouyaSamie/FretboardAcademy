@@ -69,11 +69,6 @@ watch(
   return null;
 });
 
-// function getAvatarColor() {
-//   if  (isMatch)
-//     return ""
-//     return avatarColor.value;
-// }
 
 function getAvatarIcon() {
   if (showCross.value) {
