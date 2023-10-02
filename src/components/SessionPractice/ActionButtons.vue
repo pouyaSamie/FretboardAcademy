@@ -28,7 +28,7 @@ import {
   isMatch,
 } from "./PracticeLogicHandler";
 import { State } from "@/Interfaces/IState";
-import { NoteItem } from "@/Interfaces/GuitarNeckTypes";
+import { NoteItem } from "@/Interfaces/IGuitarNeckTypes";
 
 const store = useStore<State>();
 let targetNote = ref<NoteItem | undefined>(undefined);
@@ -101,4 +101,3 @@ function SelectRandomNote(state: State) {
   store.dispatch("updateTargetNote", targetNote.value);
 }
 </script>
-@/Interfaces/IGuitarNeckTypes
