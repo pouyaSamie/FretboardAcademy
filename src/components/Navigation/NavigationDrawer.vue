@@ -23,34 +23,43 @@
         </v-row>
       </v-card>
     </v-sheet>
-{{ selectedNotes }}
-{{ selectedStrings }}
-{{ frets }}
   </v-navigation-drawer>
 </template>
 <script setup lang="ts">
-import { toRefs, ref, onMounted } from 'vue';
-import { useStore } from 'vuex';
+import { toRefs, ref, onMounted, watch } from 'vue';
+import { Store, useStore } from 'vuex';
 import Notes from './Notes.vue'
 import Strings from './Strings.vue'
+import { State } from '@/Interfaces/IState';
 
-const store = useStore();
+const store = useStore<State>();
 
 const props = defineProps({
   drawer: Boolean
 });
 
 const { drawer } = toRefs(props);
-const selectedStrings = ref(store.state.selectedStrings);
-const selectedNotes = ref(store.state.selectedNotes);
-const frets = ref(store.state.frets);
+const selectedStrings = ref<String[]>(store.state.selectedStrings);
+const selectedNotes = ref<String[]>(store.state.selectedNotes);
+const frets = ref<string | number | undefined>(store.state.frets);
 
 onMounted(() => {
-  // Set initial values from store
-  // drawer.value = store.state.drawer;
   selectedStrings.value = store.state.selectedStrings;
   selectedNotes.value = store.state.selectedNotes;
   frets.value = store.state.frets;
+});
+
+// Watchers to update store when values change
+watch(selectedStrings, (newValue) => {
+  store.commit('updateSelectedStrings', newValue);
+});
+
+watch(selectedNotes, (newValue) => {
+  store.commit('updateSelectedNotes', newValue);
+});
+
+watch(frets, (newValue) => {
+  store.commit('updateFrets', newValue);
 });
 
 </script>

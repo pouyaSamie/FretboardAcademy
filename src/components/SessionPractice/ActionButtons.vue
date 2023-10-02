@@ -101,3 +101,4 @@ function SelectRandomNote(state: State) {
   store.dispatch("updateTargetNote", targetNote.value);
 }
 </script>
+@/Interfaces/IGuitarNeckTypes

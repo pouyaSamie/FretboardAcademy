@@ -1,12 +1,8 @@
-import {type NoteItem, type SelectedNote} from '@/Interfaces/GuitarNeckTypes';
+import {type NoteItem, type SelectedNote} from '@/Interfaces/IGuitarNeckTypes';
 import {type State} from '../Interfaces/IState';
 
 export const mutations = {
-	updateSettings(state: State, newSettings: State) {
-		state.frets = newSettings.frets;
-		state.selectedNotes = newSettings.selectedNotes;
-		state.selectedStrings = newSettings.selectedStrings;
-	},
+
 	updateStatus(state: State, status: boolean) {
 		state.isStarted = !state.isStarted;
 	},
@@ -20,4 +16,15 @@ export const mutations = {
 		state.userSelectedNote = undefined;
 	},
 
+  updateSelectedStrings(state: State, Strings:string[]) {
+    state.selectedStrings = Strings;
+  },
+
+  updateSelectedNotes(state: State, Notes:string[]) {
+    state.selectedNotes = Notes;
+  },
+
+  updateFrets(state: State, Frets:number) {
+		state.frets = Frets;
+  },
 };

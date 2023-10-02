@@ -1,12 +1,9 @@
 import {type ActionContext} from 'vuex';
 import {type State} from '../Interfaces/IState';
-import {type SelectedNote, type NoteItem} from '@/Interfaces/GuitarNeckTypes';
-import {compileString} from 'sass';
+import {type SelectedNote, type NoteItem} from '@/Interfaces/IGuitarNeckTypes';
+
 
 export const actions = {
-	updateSettings(context: ActionContext<State, State>, newSettings: State) {
-		context.commit('updateSettings', newSettings);
-	},
 	updateStatus(context: ActionContext<State, State>, status: boolean) {
 		context.commit('updateStatus', status);
 	},
@@ -19,4 +16,15 @@ export const actions = {
 		context.commit('updateTargetNote', targetNote);
 	},
 
+  updateSelectedStrings(context: ActionContext<State, State>, Strings:string[]) {
+    context.commit('updateSelectedStrings', Strings);
+  },
+
+  updateSelectedNotes(context: ActionContext<State, State>, Notes:string[]) {
+    context.commit('updateSelectedNotes', Notes);
+  },
+
+  updateFrets(context: ActionContext<State, State>, Frets:number) {
+		context.commit('updateFrets', Frets);
+  },
 };

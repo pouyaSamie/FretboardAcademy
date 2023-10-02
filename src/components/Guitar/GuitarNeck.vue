@@ -1,5 +1,5 @@
 <template>
-  <div  class="guitar-outer" ref="guitarOuter">
+  <div v-if="false" class="guitar-outer" ref="guitarOuter">
     <!-- HEAD -->
     <div class="guitar-head"></div>
 
@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex';
-import { GuitarString, NoteItem, SelectedNote } from '@/Interfaces/GuitarNeckTypes';
+import { GuitarString, NoteItem, SelectedNote } from '@/Interfaces/IGuitarNeckTypes';
 import { State } from '@/Interfaces/IState';
 import { computed } from 'vue';
 
@@ -120,3 +120,4 @@ const OnUserSelectNote =(
   }
 }
 </style>
+@/Interfaces/IGuitarNeckTypes

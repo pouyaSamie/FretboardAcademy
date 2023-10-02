@@ -1,4 +1,4 @@
-import {type GuitarString, type NoteItem} from '@/Interfaces/GuitarNeckTypes';
+import {type GuitarString, type NoteItem} from '@/Interfaces/IGuitarNeckTypes';
 import {type State} from '@/Interfaces/IState';
 
 export const selectRandomString = (stringArray: GuitarString[]) => {

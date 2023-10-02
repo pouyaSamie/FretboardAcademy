@@ -1,4 +1,4 @@
-import {type GuitarString} from '@/Interfaces/GuitarNeckTypes';
+import {type GuitarString} from '@/Interfaces/IGuitarNeckTypes';
 import {type State} from '../Interfaces/IState';
 
 export const standardTuning = [

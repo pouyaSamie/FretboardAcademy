@@ -1,4 +1,4 @@
-import {type GuitarString, type NoteItem, type SelectedNote} from './GuitarNeckTypes';
+import {type GuitarString, type NoteItem, type SelectedNote} from './IGuitarNeckTypes';
 
 export type State = {
 	selectedNotes: string[];
