@@ -2,13 +2,13 @@
   <VLayoutItem model-value position="bottom" class="text-end mb-10" size="88">
     <div class="mr-10">
       <v-row>
-        <v-col v-if="isStarted" cols="1" vcols="12">
+        <v-col v-if="isStarted" lg="1" md="1" sm="2"  >
           <v-avatar :icon="getAvatarIcon()" :color="avatarColor" size="56">{{
             targetNote?.name
           }}</v-avatar>
         </v-col>
         <v-spacer />
-        <v-col cols="1">
+        <v-col lg="1" md="2" sm="2">
           <V-Btn
             :icon="getButtonIcon()"
             size="large"

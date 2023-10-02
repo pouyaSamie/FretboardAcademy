@@ -1,5 +1,5 @@
 <template>
-  <div v-if="false" class="guitar-outer" ref="guitarOuter">
+  <div  class="guitar-outer" ref="guitarOuter">
     <!-- HEAD -->
     <div class="guitar-head"></div>
 
@@ -27,7 +27,7 @@
         <span v-for="string in Tuning" :key="string.id" class="string" :class="[ string.class,{ 'highlighted': isSelected(string,targetNote) }]">
 
           <!-- NOTES -->
-          <span v-for="(note, index) in string.notes" :key="index" :class="['note', 'note-' + note, 'pos' + index, ]"
+          <span v-for="(note, index) in string.notes" :key="index" :class="['note','note-' + note, 'pos' + index, ]"
           @click="OnUserSelectNote($event, index, string, note)"
           @keydown.enter="OnUserSelectNote($event, index, string, note)"> {{ note }} </span>
 

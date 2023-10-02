@@ -253,6 +253,154 @@
         left: 188px;
       }
     }
+        // --------------------
+    // STRING NOTES
+    .note {
+      @include note-styles; // MIXINS  
+      margin-top: -50px;
+      margin-left: -12px; 
+      line-height: 23px;       
+      display: block;
+      width: 24px;
+      height: 24px;
+      // OPEN NOTE
+      &.pos0 {
+        @include open-note-styles; // MIXINS
+      }
+      // ROOT NOTE
+      &.root, &.root.pos0 {
+        @include root-note-styles; // MIXINS
+      }
+      // SPACE OUT THE NOTES
+      & + .note {
+        margin-top: 60px;
+      }
+      &.pos1 {
+        margin-top: 56px;
+      }
+      &.pos2, &.pos3 {
+        margin-top: 65px;
+      }
+      &.pos4 {
+        margin-top: 69px;
+      }
+      &.pos5 {
+        margin-top: 59px;
+      }
+      &.pos6 {
+        margin-top: 58px;
+      }
+      &.pos7 {
+        margin-top: 55px;
+      }
+      &.pos8 {
+        margin-top: 50px;
+      }
+      &.pos9, &.pos10, &.pos11  {
+        margin-top: 47px;
+      }
+      &.pos12 {
+      margin-top: 45px;
+      }
+      &.pos13 {
+        margin-top: 40px;
+      }
+      &.pos14 {
+        margin-top: 38px;
+      }
+      &.pos15, &.pos16, &.pos17  {
+        margin-top: 35px;
+      }
+      &.pos18, &.pos19, &.pos20, &.pos21  {
+        margin-top: 32px;
+      }
+      &.pos22  {
+        margin-top: 30px;
+      }
+    }
+    .marker {
+      @include marker-styles; // MIXINS
+     
+
+      // INDIVIDUAL
+      &.marker1 {
+        right: 224px;
+        i::before, i::after {
+          content: '3';
+        }
+      }
+      &.marker2 {
+        top: 382px;
+
+        i::before, i::after {
+          content: '5';
+        }
+      }
+      &.marker3 {
+        top: 543px;
+        i::before, i::after {
+          content: '7';
+        }
+      }
+      &.marker4 {
+        top: 689px;
+
+        i::before, i::after {
+          content: '9';
+        }
+      }
+      &.marker5 {
+        right: 986px;
+        &:before {
+          left: -102px;
+        }
+        &::after {
+          bottom: none;
+        }
+        i::before {
+          content: '12';
+          top: 1px;
+          left: -103px;
+          right: 0;
+        }
+      }
+      &.marker5b {
+        &:after {
+          left: 98px;
+        }
+        &::before {
+          display: none;
+        }
+        i::after {
+          content: '12';
+
+        }       
+      }
+      &.marker6 {
+        right: 1195px;
+        i::before, i::after {
+          content: '15';
+        }
+      }
+      &.marker7 {
+        right: 1331px;
+        i::before, i::after {
+          content: '17';
+        }
+      }
+      &.marker8 {
+        right: 1460px;
+        i::before, i::after {
+          content: '19';
+        }
+      }
+      &.marker9 {
+        right: 1585px;
+        i::before, i::after {
+          content: '21';
+        }
+      }
+    }
   }
 
 // GUITAR BITS VARIABLES
@@ -427,6 +575,7 @@
          margin-left: 0;
        }
      }
+     
      
      // --------------------
      // MARKERS
@@ -1067,6 +1216,7 @@
     height: 130px;
     top: 0;
     background: url(@/assets/img/vert-head-mobile.png) no-repeat center center;
+    width: 300px;
 
   }
 
