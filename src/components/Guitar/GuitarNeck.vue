@@ -120,4 +120,3 @@ const OnUserSelectNote =(
   }
 }
 </style>
-@/Interfaces/IGuitarNeckTypes
