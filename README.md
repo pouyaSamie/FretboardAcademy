@@ -1,53 +1,71 @@
-# default
+# Fretboard Academy
 
-## Project setup
+Welcome to the Fretboard Academy! This web application is designed to help you master the guitar fretboard by providing an interactive and engaging learning experience. This project is built with Vue.js and was inspired by the UI of [FretMap](https://github.com/thathurtabit/FretMap) by ThatHurtABit.
 
+website: https://fretboardacademy.xyz
+
+## Features
+
+- Interactive and visual representation of the guitar fretboard.
+- Learn the names of notes on the fretboard.
+- Practice identifying notes in different positions.
+- Responsive design for desktop and mobile devices.
+
+![Alt text](src/assets/img/Screenshot.png)
+
+## Getting Started
+
+Follow these instructions to get the project up and running on your local machine.
+
+### Prerequisites
+
+- Node.js and npm (Node Package Manager) installed.
+
+### Installation
+
+1. Clone the repository to your local machine.
+
+```bash
+git@github.com:pouyaSamie/FretboardAcademy.git
 ```
-# yarn
-yarn
 
-# npm
-npm install
+2. Navigate to the project directory.
 
-# pnpm
-pnpm install
+```bash
+cd FretboardAcademy
+```
 
-# bun
-bun install
+3. Install the project dependencies.
+
+```bash
+yarn install
 ```
 
 ### Compiles and hot-reloads for development
-
+```bash
+yarn serve
 ```
-# yarn
-yarn dev
+### Contributing
+Contributions are welcome! If you'd like to contribute to this project, please follow these guidelines:
 
-# npm
-npm run dev
+- Fork the repository.
 
-# pnpm
-pnpm dev
+- Create a new branch for your feature or bug fix.
 
-# bun
-bun run dev
-```
+- Make your changes and test them thoroughly.
 
-### Compiles and minifies for production
+- Create a pull request with a clear description of your changes.
 
-```
-# yarn
-yarn build
+### License
 
-# npm
-npm run build
+This project is licensed under the MIT License
 
-# pnpm
-pnpm build
+### Acknowledgments
 
-# bun
-bun run build
-```
+Inspired by [FretMap](https://github.com/thathurtabit/FretMap) by ThatHurtABit.
+Built with Vue.js.
 
-### Customize configuration
+### Contact
+If you have any questions or suggestions, feel free to contact me.
 
-See [Configuration Reference](https://vitejs.dev/config/).
+Happy Learning guitar fretboard!
