@@ -408,11 +408,11 @@
   width: 21px;
   height: 22px;
   // @include square(22px);
-      line-height: 26px;
-      @include border-radius(100%);
+      line-height: 21px;
+      @include border-radius(0%);
       color: $white;
       text-align: center;
-      font-size: $baseFontSize + 1;
+      font-size: $baseFontSize;
       font-weight: 500;
       font-family: $headingsFontFamily;      
       text-shadow: 0 1px 1px rgba(0,0,0,0.5);
@@ -427,7 +427,7 @@
         font-style: normal;
         position: absolute;
         text-transform: lowercase;
-        font-size: $baseFontSize - 3;
+        font-size: $baseFontSize - 1;
         @include opacity(0);
       }
       // SHOW
