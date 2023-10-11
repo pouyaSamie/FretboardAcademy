@@ -27,4 +27,8 @@ export const actions = {
   updateFrets(context: ActionContext<State, State>, Frets:number) {
 		context.commit('updateFrets', Frets);
   },
+
+	updateUserScore(context: ActionContext<State, State>, isMatch:boolean) {
+		context.commit('updateUserScore', isMatch);
+  },
 };

@@ -27,4 +27,9 @@ export const mutations = {
   updateFrets(state: State, Frets:number) {
 		state.frets = Frets;
   },
+	updateUserScore(state: State, isMatch:boolean) {
+		state.TotalChoice =+1;
+		if (isMatch)
+			state.UserScore =+1;
+  },
 };

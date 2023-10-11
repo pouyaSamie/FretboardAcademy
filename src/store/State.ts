@@ -19,4 +19,6 @@ export const state: State = {
 	drawer: false,
 	userSelectedNote: undefined,
 	targetNote: undefined,
+	TotalChoice: 0,
+	UserScore: 0,
 };

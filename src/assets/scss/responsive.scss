@@ -207,8 +207,8 @@
 
 // QUICK FIX FOR HUGE MONITORS
 // Make sure guitar doesn't stop as scroll right
-@media (min-width: $outerLength) and (orientation:landscape) {
-	.guitar-outer {
-    	left: 1000px;
-  	}
-}
+// @media (min-width: $outerLength) and (orientation:landscape) {
+// 	.guitar-outer {
+//     	left: 1000px;
+//   	}
+// }

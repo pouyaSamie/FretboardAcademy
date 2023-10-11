@@ -63,6 +63,7 @@ watch(
       avatarColor.value ="red";
       showCross.value = true;
     }
+    store.dispatch("updateUserScore", matched);
     return matched;
   }
 

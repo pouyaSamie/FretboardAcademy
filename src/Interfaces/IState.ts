@@ -9,4 +9,6 @@ export type State = {
 	tuning: GuitarString[];
 	userSelectedNote: SelectedNote | undefined;
 	targetNote: NoteItem | undefined;
+	UserScore:number;
+	TotalChoice:number;
 };
