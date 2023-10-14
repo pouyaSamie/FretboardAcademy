@@ -1,12 +1,12 @@
 <template>
   <v-navigation-drawer scrim v-model="drawer">
     <v-sheet elevation="10" class="py-4 px-1">
-      
+
       <v-row dense>
         <v-col cols="12">
           <Notes v-model="selectedNotes" />
         </v-col>
-       
+
         <v-col cols="12">
           <Strings v-model="selectedStrings" />
         </v-col>
@@ -24,42 +24,45 @@
       </v-card>
     </v-sheet>
   </v-navigation-drawer>
+  <v-app-bar>
+    <v-app-bar-nav-icon  @click="drawer = !drawer"> </v-app-bar-nav-icon>
+    <img src="@/assets/img/logo.png" width="100" height="46" class="ml-3" />
+    <v-app-bar-title></v-app-bar-title>
+    <p>Score: 10 / 15</p>
+    <v-btn target="_blank" href="https://github.com/pouyaSamie/FretboardAcademy" icon>
+      <v-icon>mdi-github</v-icon>
+    </v-btn>
+  </v-app-bar>
 </template>
 <script setup lang="ts">
-import { toRefs, ref, onMounted, watch } from 'vue';
-import { Store, useStore } from 'vuex';
+import { ref, onMounted, watch } from 'vue';
+
 import Notes from './Notes.vue'
 import Strings from './Strings.vue'
-import { State } from '@/Interfaces/IState';
-
-const store = useStore<State>();
-
-const props = defineProps({
-  drawer: Boolean
-});
-
-const { drawer } = toRefs(props);
-const selectedStrings = ref<String[]>(store.state.selectedStrings);
-const selectedNotes = ref<String[]>(store.state.selectedNotes);
-const frets = ref<string | number | undefined>(store.state.frets);
+import { useGuitarStore } from '@/stores/guitarStore';
+const guitarStore = useGuitarStore();
+const drawer = ref(false)
+const selectedStrings = ref<String[]>(guitarStore.selectedStrings);
+const selectedNotes = ref<String[]>(guitarStore.selectedNotes);
+const frets = ref<string | number | undefined>(guitarStore.frets);
 
 onMounted(() => {
-  selectedStrings.value = store.state.selectedStrings;
-  selectedNotes.value = store.state.selectedNotes;
-  frets.value = store.state.frets;
+  selectedStrings.value = guitarStore.selectedStrings;
+  selectedNotes.value = guitarStore.selectedNotes;
+  frets.value = guitarStore.frets;
 });
 
 // Watchers to update store when values change
 watch(selectedStrings, (newValue) => {
-  store.commit('updateSelectedStrings', newValue);
+  guitarStore.updateSelectedStrings(newValue as string[])
 });
 
 watch(selectedNotes, (newValue) => {
-  store.commit('updateSelectedNotes', newValue);
+  guitarStore.updateSelectedNotes(newValue as string[])
 });
 
 watch(frets, (newValue) => {
-  store.commit('updateFrets', newValue);
+  guitarStore.updateFrets(newValue as number)
 });
 
 </script>

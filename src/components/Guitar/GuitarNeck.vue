@@ -43,15 +43,16 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from 'vuex';
-import { GuitarString, NoteItem, SelectedNote } from '@/Interfaces/IGuitarNeckTypes';
-import { State } from '@/Interfaces/IState';
+import type { GuitarString, NoteItem, SelectedNote } from '@/Interfaces/IGuitarNeckTypes';
+import { useGuitarStore } from '@/stores/guitarStore';
+import { usePracticeStore } from '@/stores/userPracticeStore';
 import { computed } from 'vue';
 
-const store = useStore<State>();
-const Tuning : GuitarString[] = store.state.tuning;
+const store = useGuitarStore()
+const practiceStore = usePracticeStore();
+const Tuning : GuitarString[] = store.tuning;
 const targetNote =computed(() => { 
-  return store.state.targetNote 
+  return store.targetNote
 });
 
 const isSelected = (string: GuitarString, TargetNote: NoteItem | undefined) => {
@@ -72,8 +73,7 @@ const OnUserSelectNote =(
   setTimeout(() => {
     target.classList.remove('on');
   }, 2000);
-
-  store.dispatch('updateUserChoice', {Fret:fret, String : selectedString, Note: note} as SelectedNote);
+  practiceStore.updateUserChoice( {Fret:fret, String : selectedString, Note: note} as SelectedNote)
 }
 
 

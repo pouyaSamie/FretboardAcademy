@@ -22,31 +22,37 @@
 </template>
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import { useStore } from "vuex";
 import {
   chooseRandomNote,
   isMatch,
 } from "./PracticeLogicHandler";
-import { State } from "@/Interfaces/IState";
-import { NoteItem } from "@/Interfaces/IGuitarNeckTypes";
+import type { NoteItem } from "@/Interfaces/IGuitarNeckTypes";
+import { usePracticeStore } from "@/stores/userPracticeStore";
+import { useScoreStore } from "@/stores/userScoreStore";
+import type { GuitarState } from "@/Interfaces/store.Type";
+import { useGuitarStore } from "@/stores/guitarStore";
 
-const store = useStore<State>();
+const store = usePracticeStore()
+const userScoreStore = useScoreStore()
+const guitarStore = useGuitarStore()
 let targetNote = ref<NoteItem | undefined>(undefined);
 let showCross = ref(false);
 let showCheck = ref(false);
 let avatarColor = ref("#ccc");
 const toggleStart = () => {
-  let shouldStart = !store.state.isStarted;
-  store.dispatch("updateStatus", shouldStart);
-  if (shouldStart) SelectRandomNote(store.state);
+  let shouldStart = !store.isStarted;
+  store.updateStatus(shouldStart);
+  if (shouldStart) SelectRandomNote(guitarStore);
+  
+  
 };
 
 const isStarted = computed(() => {
-  return store.state.isStarted;
+  return store.isStarted;
 });
 
 watch(
-  () => store.state.userSelectedNote,
+  () => store.userSelectedNote,
   (newUserSelectedNote) => {
   if (newUserSelectedNote) {
     let matched = isMatch(
@@ -58,12 +64,13 @@ watch(
     if (matched) {
       showCheck.value = true;
       avatarColor.value ="green";
-      SelectRandomNote(store.state);
+      SelectRandomNote(guitarStore);
     } else {
       avatarColor.value ="red";
       showCross.value = true;
     }
-    store.dispatch("updateUserScore", matched);
+
+    userScoreStore.updateUserScore(matched);
     return matched;
   }
 
@@ -97,8 +104,9 @@ function getButtonColor() {
   return isStarted.value ? "red" : "green";
 }
 
-function SelectRandomNote(state: State) {
+function SelectRandomNote(state: GuitarState) {
   targetNote.value = chooseRandomNote(state);
-  store.dispatch("updateTargetNote", targetNote.value);
+  guitarStore.updateTargetNote(targetNote.value)
+
 }
 </script>
