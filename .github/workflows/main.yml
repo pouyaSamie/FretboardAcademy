@@ -33,7 +33,8 @@ jobs:
           key: ${{ secrets.SSHKEY }}
           source: "dist/*"
           target: ${{ secrets.TARGET }}
-
+          strip_components: 1
+          rm: true
       - name: Execute remote command (Optional)
         uses: appleboy/ssh-action@master
         with:
