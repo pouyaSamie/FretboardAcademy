@@ -38,12 +38,12 @@ cd FretboardAcademy
 3. Install the project dependencies.
 
 ```bash
-yarn install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```bash
-yarn dev
+npm run dev
 ```
 ### Contributing
 Contributions are welcome! If you'd like to contribute to this project, please follow these guidelines:
