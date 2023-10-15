@@ -26,12 +26,11 @@ jobs:
 
       - name: Copy files to server
         uses: appleboy/scp-action@master
-        env:
+        with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           port: ${{ secrets.PORT }}
           key: ${{ secrets.SSHKEY }}
-        with:
           source: "dist/"
           target: ${{ secrets.TARGET }}
 
