@@ -1,4 +1,4 @@
-import type {  SelectedNote } from '@/Interfaces/IGuitarNeckTypes';
+import type {  SelectedNote } from '@/Interfaces/GuitarNeckTypes';
 import type { userPracticeState } from '@/Interfaces/store.Type';
 import { defineStore } from 'pinia';
 

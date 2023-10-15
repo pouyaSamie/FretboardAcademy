@@ -2,19 +2,14 @@
   <VLayoutItem model-value position="bottom" class="text-end mb-10" size="88">
     <div class="mr-10">
       <v-row>
-        <v-col v-if="isStarted" lg="1" md="1" sm="2"  >
+        <v-col v-if="isStarted" lg="1" md="1" sm="2">
           <v-avatar :icon="getAvatarIcon()" :color="avatarColor" size="56">{{
             targetNote?.name
           }}</v-avatar>
         </v-col>
         <v-spacer />
         <v-col lg="1" md="2" sm="2">
-          <V-Btn
-            :icon="getButtonIcon()"
-            size="large"
-            @click="toggleStart"
-            :color="getButtonColor()"
-          />
+          <V-Btn class="tour-step2" :icon="getButtonIcon()" size="large" @click="toggleStart" :color="getButtonColor()" />
         </v-col>
       </v-row>
     </div>
@@ -26,7 +21,7 @@ import {
   chooseRandomNote,
   isMatch,
 } from "./PracticeLogicHandler";
-import type { NoteItem } from "@/Interfaces/IGuitarNeckTypes";
+import type { NoteItem } from "@/Interfaces/GuitarNeckTypes";
 import { usePracticeStore } from "@/stores/userPracticeStore";
 import { useScoreStore } from "@/stores/userScoreStore";
 import type { GuitarState } from "@/Interfaces/store.Type";
@@ -43,8 +38,8 @@ const toggleStart = () => {
   let shouldStart = !store.isStarted;
   store.updateStatus(shouldStart);
   if (shouldStart) SelectRandomNote(guitarStore);
-  
-  
+
+
 };
 
 const isStarted = computed(() => {
@@ -54,41 +49,41 @@ const isStarted = computed(() => {
 watch(
   () => store.userSelectedNote,
   (newUserSelectedNote) => {
-  if (newUserSelectedNote) {
-    let matched = isMatch(
-      newUserSelectedNote.Fret,
-      newUserSelectedNote.String,
-      newUserSelectedNote.Note,
-      targetNote.value
-    );
-    if (matched) {
-      showCheck.value = true;
-      avatarColor.value ="green";
-      SelectRandomNote(guitarStore);
-    } else {
-      avatarColor.value ="red";
-      showCross.value = true;
+    if (newUserSelectedNote) {
+      let matched = isMatch(
+        newUserSelectedNote.Fret,
+        newUserSelectedNote.String,
+        newUserSelectedNote.Note,
+        targetNote.value
+      );
+      if (matched) {
+        showCheck.value = true;
+        avatarColor.value = "green";
+        SelectRandomNote(guitarStore);
+      } else {
+        avatarColor.value = "red";
+        showCross.value = true;
+      }
+
+      userScoreStore.updateUserScore(matched);
+      return matched;
     }
 
-    userScoreStore.updateUserScore(matched);
-    return matched;
-  }
-
-  return null;
-});
+    return null;
+  });
 
 
 function getAvatarIcon() {
   if (showCross.value) {
     setTimeout(() => {
       showCross.value = false;
-      avatarColor.value ="#ccc";
+      avatarColor.value = "#ccc";
     }, 2000);
     return "mdi-close";
   } else if (showCheck.value) {
     setTimeout(() => {
       showCheck.value = false;
-      avatarColor.value ="#ccc";
+      avatarColor.value = "#ccc";
     }, 2000);
     return "mdi-check";
   } else {

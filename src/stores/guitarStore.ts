@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { GuitarString, NoteItem } from '@/Interfaces/IGuitarNeckTypes'
+import type { GuitarString, NoteItem } from '@/Interfaces/GuitarNeckTypes'
 import type { GuitarState } from '@/Interfaces/store.Type'
 import { usePracticeStore } from './userPracticeStore';
 

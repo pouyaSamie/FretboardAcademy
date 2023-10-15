@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import type { GuitarString, NoteItem, SelectedNote } from '@/Interfaces/IGuitarNeckTypes';
+import type { GuitarString, NoteItem, SelectedNote } from '@/Interfaces/GuitarNeckTypes';
 import { useGuitarStore } from '@/stores/guitarStore';
 import { usePracticeStore } from '@/stores/userPracticeStore';
 import { computed } from 'vue';

@@ -1,4 +1,4 @@
-import {type GuitarString, type NoteItem} from '@/Interfaces/IGuitarNeckTypes';
+import {type GuitarString, type NoteItem} from '@/Interfaces/GuitarNeckTypes';
 
 import type { GuitarState } from '@/Interfaces/store.Type';
 

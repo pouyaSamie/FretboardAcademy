@@ -1,7 +1,6 @@
 <template>
-  <v-navigation-drawer scrim v-model="drawer">
+  <v-navigation-drawer class="tour-step1" scrim v-model="drawer">
     <v-sheet elevation="10" class="py-4 px-1">
-
       <v-row dense>
         <v-col cols="12">
           <Notes v-model="selectedNotes" />
@@ -24,14 +23,19 @@
       </v-card>
     </v-sheet>
   </v-navigation-drawer>
+
   <v-app-bar>
-    <v-app-bar-nav-icon  @click="drawer = !drawer"> </v-app-bar-nav-icon>
+    <v-app-bar-nav-icon @click="drawer = !drawer"> </v-app-bar-nav-icon>
+
     <img src="@/assets/img/logo.png" width="100" height="46" class="ml-3" />
+
     <v-app-bar-title></v-app-bar-title>
-    <p>Score: 10 / 15</p>
+    <p class="tour-step3">Score: 10 / 15</p>
+
     <v-btn target="_blank" href="https://github.com/pouyaSamie/FretboardAcademy" icon>
       <v-icon>mdi-github</v-icon>
     </v-btn>
+    <Tour />
   </v-app-bar>
 </template>
 <script setup lang="ts">
@@ -40,6 +44,7 @@ import { ref, onMounted, watch } from 'vue';
 import Notes from './NotesSettings.vue'
 import Strings from './StringsSettings.vue'
 import { useGuitarStore } from '@/stores/guitarStore';
+import Tour from "../Tour/SheperdTour.vue"
 const guitarStore = useGuitarStore();
 const drawer = ref(false)
 const selectedStrings = ref<String[]>(guitarStore.selectedStrings);
