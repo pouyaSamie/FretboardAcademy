@@ -1,46 +1,71 @@
-# vite-vue
+# Fretboard Academy
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to the Fretboard Academy! This web application is designed to help you master the guitar fretboard by providing an interactive and engaging learning experience. This project is built with Vue.js and was inspired by the UI of [FretMap](https://github.com/thathurtabit/FretMap) by ThatHurtABit.
 
-## Recommended IDE Setup
+website: https://fretboardacademy.xyz
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- Interactive and visual representation of the guitar fretboard.
+- Learn the names of notes on the fretboard.
+- Practice identifying notes in different positions.
+- Responsive design for desktop and mobile devices.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+![Alt text](src/assets/img/Screenshot.png)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+## Getting Started
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+Follow these instructions to get the project up and running on your local machine.
 
-## Customize configuration
+### Prerequisites
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- Node.js and npm (Node Package Manager) installed.
 
-## Project Setup
+### Installation
 
-```sh
-npm install
+1. Clone the repository to your local machine.
+
+```bash
+git@github.com:pouyaSamie/FretboardAcademy.git
 ```
 
-### Compile and Hot-Reload for Development
+2. Navigate to the project directory.
 
-```sh
-npm run dev
+```bash
+cd FretboardAcademy
 ```
 
-### Type-Check, Compile and Minify for Production
+3. Install the project dependencies.
 
-```sh
-npm run build
+```bash
+yarn install
 ```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
+### Compiles and hot-reloads for development
+```bash
+yarn dev
 ```
+### Contributing
+Contributions are welcome! If you'd like to contribute to this project, please follow these guidelines:
+
+- Fork the repository.
+
+- Create a new branch for your feature or bug fix.
+
+- Make your changes and test them thoroughly.
+
+- Create a pull request with a clear description of your changes.
+
+### License
+
+This project is licensed under the MIT License
+
+### Acknowledgments
+
+Inspired by [FretMap](https://github.com/thathurtabit/FretMap) by ThatHurtABit.
+Built with Vue.js.
+
+### Contact
+If you have any questions or suggestions, feel free to contact me.
+
+Happy Learning guitar fretboard!
