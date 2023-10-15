@@ -1,12 +1,13 @@
 import {type GuitarString, type NoteItem} from '@/Interfaces/IGuitarNeckTypes';
-import {type State} from '@/Interfaces/IState';
+
+import type { GuitarState } from '@/Interfaces/store.Type';
 
 export const selectRandomString = (stringArray: GuitarString[]) => {
 	const randomIndex = Math.floor(Math.random() * stringArray.length);
 	return stringArray[randomIndex];
 };
 
-export const getUserSelectedStrings = (state: State): GuitarString[] => {
+export const getUserSelectedStrings = (state: GuitarState): GuitarString[] => {
 	const userNotes = state.selectedNotes.map(note => note.toLowerCase()); // Convert all user notes to lowercase
 	const userStrings = state.tuning.filter(string => state.selectedStrings.includes(string.id));
 	const noteInFrets = userStrings.map(string => ({
@@ -18,7 +19,7 @@ export const getUserSelectedStrings = (state: State): GuitarString[] => {
 	return noteInFrets;
 };
 
-export const chooseRandomNote = (newState: State): NoteItem => {
+export const chooseRandomNote = (newState: GuitarState): NoteItem => {
 	const userSelectedStrings = getUserSelectedStrings(newState);
 	const randomString = selectRandomString(userSelectedStrings);
 	const randomFretIndex = Math.floor(Math.random() * randomString.notes.length);
