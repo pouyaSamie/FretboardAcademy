@@ -37,8 +37,8 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
 
-import Notes from './Notes.vue'
-import Strings from './Strings.vue'
+import Notes from './NotesSettings.vue'
+import Strings from './StringsSettings.vue'
 import { useGuitarStore } from '@/stores/guitarStore';
 const guitarStore = useGuitarStore();
 const drawer = ref(false)
