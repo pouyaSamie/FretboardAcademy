@@ -37,6 +37,10 @@ export const useGuitarStore = defineStore('Guitar', {
       this.frets = Frets
     },
 
+    updateMarkerVisibility(show: boolean) {
+      this.showMarkers = show
+    },
+
 		updateTargetNote(selectedNote: NoteItem) {
 			const practiceState = usePracticeStore()
       this.targetNote = selectedNote;
