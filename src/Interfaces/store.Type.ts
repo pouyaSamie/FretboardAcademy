@@ -4,6 +4,7 @@ export type GuitarState = {
 	selectedNotes: string[];
 	selectedStrings: string[];
 	frets: number;
+	showMarkers: boolean;
 	tuning: GuitarString[];
 	targetNote: NoteItem | undefined;
 };

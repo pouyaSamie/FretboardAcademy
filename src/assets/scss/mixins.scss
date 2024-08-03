@@ -603,6 +603,14 @@
          @include rotate(45deg);
          @include border-radius(0 100% 100% 100%);
        }
+       &.hidden {
+        i {
+          &::before, &::after {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+        }
+      }
        // BEFORE & AFTER MARKER 'I'
        i {        
          position: absolute;
@@ -1073,6 +1081,18 @@
       content: '';
       background: rgba(255,255,255,0.10);
     }
+    &.hidden {
+      &::before, &::after {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      i {
+        &::before, &::after {
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+      }
+    }
     // BEFORE & AFTER MARKER 'I'
     i {
       @include square(30px);
@@ -1540,7 +1560,7 @@
           }
         }
         &.marker5 {
-          top: 954px;
+          top: 1022px;
           left: 33%;
           &:before {
             left: -100px;
@@ -1554,7 +1574,7 @@
           }
         }
         &.marker5b {
-          top: 954px;
+          top: 1022px;
           left: 66%;
           &:after {
             right: -100px;

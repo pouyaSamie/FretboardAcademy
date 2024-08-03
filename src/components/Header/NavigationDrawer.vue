@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer class="tour-step1" scrim v-model="drawer">
+  <v-navigation-drawer class="tour-step1" scrim v-model="isDrawerOpen">
     <v-sheet elevation="10" class="py-4 px-1">
       <v-row dense>
         <v-col cols="12">
@@ -18,48 +18,34 @@
           <v-col cols="11" class="my-10">
             <v-slider v-model="frets" :max="24" :step="1" label="Frets" thumb-label="always">
             </v-slider>
+            <v-switch :model-value="true" color="primary" label="Show Markers"></v-switch>
+
           </v-col>
         </v-row>
       </v-card>
     </v-sheet>
   </v-navigation-drawer>
 
-  <v-app-bar>
-    <v-app-bar-nav-icon @click="drawer = !drawer"> </v-app-bar-nav-icon>
-
-    <img src="@/assets/img/logo.png" width="100" height="46" class="ml-3" />
-
-    <v-app-bar-title></v-app-bar-title>
-    <p class="tour-step3">
-      Score: {{ userScoreStore.UserScore }} / {{ userScoreStore.TotalChoice }}
-    </p>
-
-    <v-btn target="_blank" href="https://github.com/pouyaSamie/FretboardAcademy" icon>
-      <v-icon>mdi-github</v-icon>
-    </v-btn>
-    <Tour />
-  </v-app-bar>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, toRef } from 'vue'
 
 import Notes from './NotesSettings.vue'
 import Strings from './StringsSettings.vue'
 import { useGuitarStore } from '@/stores/guitarStore'
-import Tour from '../Tour/SheperdTour.vue'
-import { useScoreStore } from '@/stores/userScoreStore'
 const guitarStore = useGuitarStore()
-const userScoreStore = useScoreStore()
-const drawer = ref(false)
-
+const props = defineProps(['drawer']);
+const isDrawerOpen = toRef(props, 'drawer');
 const selectedStrings = ref<String[]>(guitarStore.selectedStrings)
 const selectedNotes = ref<String[]>(guitarStore.selectedNotes)
 const frets = ref<string | number | undefined>(guitarStore.frets)
+  const showMarkers = ref<boolean>(guitarStore.showMarkers)
 
 onMounted(() => {
   selectedStrings.value = guitarStore.selectedStrings
   selectedNotes.value = guitarStore.selectedNotes
   frets.value = guitarStore.frets
+  showMarkers.value = guitarStore.showMarkers
 })
 
 // Watchers to update store when values change
@@ -73,5 +59,9 @@ watch(selectedNotes, (newValue) => {
 
 watch(frets, (newValue) => {
   guitarStore.updateFrets(newValue as number)
+})
+
+watch(showMarkers, (newValue) => {
+  guitarStore.updateMarkerVisibility(newValue as boolean)
 })
 </script>

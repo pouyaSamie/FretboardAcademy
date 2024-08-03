@@ -6,14 +6,13 @@
       <GuitarNeck />
     </v-main>
 
-    <ActionButtons />
+    <!-- <ActionButtons /> -->
   </v-app>
 </template>
 
 <script lang="ts" setup>
 import GuitarNeck from './components/Guitar/GuitarNeck.vue'
-import NavigationDrawer from './components/ToolBar/NavigationDrawer.vue'
-import ActionButtons from './components/SessionPractice/ActionButtons.vue'
+import NavigationDrawer from './components/Header/NavBar.vue'
 </script>
 
 <style>

@@ -1,4 +1,4 @@
-import { type GuitarString, type NoteItem } from '@/Interfaces/GuitarNeckTypes'
+import { type GuitarString, type NoteItem, type SelectedNote } from '@/Interfaces/GuitarNeckTypes'
 
 import type { GuitarState } from '@/Interfaces/store.Type'
 
@@ -19,18 +19,26 @@ export const getUserSelectedStrings = (state: GuitarState): GuitarString[] => {
   return noteInFrets
 }
 
-export const chooseRandomNote = (newState: GuitarState): NoteItem => {
+export const chooseRandomNote = (
+  newState: GuitarState,
+  userChoice: SelectedNote | undefined
+): NoteItem => {
   const userSelectedStrings = getUserSelectedStrings(newState)
-  const randomString = selectRandomString(userSelectedStrings)
-  const randomFretIndex = Math.floor(Math.random() * randomString.notes.length)
-  const fret = newState.tuning
-    .filter((string) => string.id === randomString.id)[0]
-    .notes.indexOf(randomString.notes[randomFretIndex])
-  const result: NoteItem = {
-    name: randomString.notes[randomFretIndex].toUpperCase(),
-    string: randomString.id,
-    fret
-  }
+  let result: NoteItem
+
+  do {
+    const randomString = selectRandomString(userSelectedStrings)
+    const randomFretIndex = Math.floor(Math.random() * randomString.notes.length)
+
+    const fret = newState.tuning
+      .filter((string) => string.id === randomString.id)[0]
+      .notes.indexOf(randomString.notes[randomFretIndex])
+    result = {
+      name: randomString.notes[randomFretIndex].toUpperCase(),
+      string: randomString.id,
+      fret
+    }
+  } while (userChoice && result.name === userChoice.Note && result.string === userChoice.String.id)
 
   return result
 }

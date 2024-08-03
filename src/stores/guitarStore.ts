@@ -21,6 +21,7 @@ export const useGuitarStore = defineStore('Guitar', {
     tuning: standardTuning,
     frets: 12,
 		targetNote: undefined,
+    showMarkers:false
   }),
 
   actions: {
